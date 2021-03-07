@@ -291,6 +291,10 @@ class CoinRun : public BasicAbstractGame {
             allow_monsters = false;
         }
 
+        bool coined = false; // Changed
+        int coin_gen = rand_gen.randn(num_sections); // Changed
+        
+
         for (int section_idx = 0; section_idx < num_sections; section_idx++) {
             if (curr_x + 15 >= w) {
                 break;
@@ -319,6 +323,17 @@ class CoinRun : public BasicAbstractGame {
             if (curr_y < 1) {
                 curr_y = 1;
             }
+
+            if (section_idx == coin_gen){
+                if (coined == false){
+                    set_obj(curr_x, curr_y, GOAL);// Changed
+                    coined = true;
+                }
+            }
+            // if (curr_x == coin_loc) {
+            //     set_obj(curr_x, curr_y, GOAL);// Changed
+            //     coined = true;
+            // }
 
             bool use_pit = allow_pit && (dx > 7) && (curr_y > 3) && (rand_gen.randn(20) >= pit_threshold);
 
@@ -407,7 +422,9 @@ class CoinRun : public BasicAbstractGame {
             set_obj(curr_x, curr_y, ENEMY_BARRIER);
         }
 
-        set_obj(curr_x, curr_y, GOAL);
+        // if( coined == false) {
+        //     set_obj(curr_x, curr_y, GOAL); // Changed
+        // }
 
         fill_ground_block(curr_x, 0, 1, curr_y);
         fill_elem(curr_x + 1, 0, main_width - curr_x - 1, main_height, WALL_MID);
