@@ -65,7 +65,7 @@ def main():
     )
     parser.add_argument(
         "--env-name",
-        default="coinrun",
+        default="maze",
         help="name of game to create " + default_str,
         choices=ENV_NAMES + ["coinrun_old"],
     )
@@ -121,6 +121,7 @@ def main():
         "restrict_themes": args.restrict_themes,
         "use_monochrome_assets": args.use_monochrome_assets,
     }
+    
     if args.env_name != "coinrun_old":
         kwargs["distribution_mode"] = args.distribution_mode
     if args.level_seed is not None:
@@ -129,6 +130,7 @@ def main():
     ia = make_interactive(
         args.vision, record_dir=args.record_dir, env_name=args.env_name, **kwargs
     )
+    
     ia.run()
 
 

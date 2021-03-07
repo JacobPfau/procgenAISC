@@ -22,6 +22,7 @@ class MazeGen {
     void generate_maze_no_dead_ends();
     void generate_maze_with_doors(int num_doors);
     void place_objects(int start_obj, int num_objs);
+    void deterministic_place(int start_obj, bool arrow);
 
   private:
     RandGen *rand_gen;

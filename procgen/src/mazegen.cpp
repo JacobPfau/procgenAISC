@@ -289,6 +289,16 @@ void MazeGen::generate_maze_with_doors(int num_doors) {
     }
 }
 
+void MazeGen::deterministic_place(int start_obj, bool arrow) {
+    if (!arrow){
+        grid.set(maze_dim+MAZE_OFFSET-1, maze_dim+MAZE_OFFSET-1, start_obj);
+    }
+    if (arrow){
+        grid.set(maze_dim+MAZE_OFFSET-2, maze_dim+MAZE_OFFSET-2, start_obj);
+        // grid.set(maze_dim+MAZE_OFFSET-1, maze_dim+MAZE_OFFSET-2, start_obj);
+    }
+}
+
 void MazeGen::place_objects(int start_obj, int num_objs) {
     for (int j = 0; j < num_objs; j++) {
         int m = rand_gen->randn(num_free_cells);
