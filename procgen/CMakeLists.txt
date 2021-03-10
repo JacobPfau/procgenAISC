@@ -65,7 +65,6 @@ add_library(env
   src/games/plunder.cpp
   src/games/starpilot.cpp
   src/games/coinrun_AISC.cpp
-  src/games/maze_AISC.cpp
   src/mazegen.cpp
   src/randgen.cpp
   src/roomgen.cpp
