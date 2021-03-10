@@ -1,4 +1,10 @@
-**Status:** Maintenance (expect bug fixes and minor updates)
+# AISC 
+
+### Coinrun branch
+coinrun.cpp now has coin in a random location
+
+### Maze branch
+Maze has the cheese in a deterministic place and a marker next to it.
 
 # Procgen Benchmark
 
