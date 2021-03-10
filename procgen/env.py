@@ -28,6 +28,7 @@ ENV_NAMES = [
     "ninja",
     "plunder",
     "starpilot",
+    "coinrun_AISC"
 ]
 
 EXPLORATION_LEVEL_SEEDS = {
