@@ -6,7 +6,6 @@ const std::string NAME = "maze";
 const float REWARD = 10.0;
 
 const int GOAL = 2;
-const int ARROW = 3;
 
 class MazeGame : public BasicAbstractGame {
   public:
@@ -32,11 +31,9 @@ class MazeGame : public BasicAbstractGame {
         if (type == WALL_OBJ) {
             names.push_back("kenney/Ground/Sand/sandCenter.png");
         } else if (type == GOAL) {
-            names.push_back("kenney/Ground/Sand/sandCenter.png");// names.push_back("misc_assets/cheese.png");
+            names.push_back("misc_assets/cheese.png");
         } else if (type == PLAYER) {
             names.push_back("kenney/Enemies/mouse_move.png");
-        } else if (type == ARROW) {
-            names.push_back("misc_assets/dirt.png");
         }
     }
 
@@ -74,8 +71,7 @@ class MazeGame : public BasicAbstractGame {
         agent->y = margin + .5;
 
         maze_gen->generate_maze();
-        maze_gen-> deterministic_place(GOAL, false);//place_objects(GOAL, 1);
-        maze_gen-> deterministic_place(ARROW, true);
+        maze_gen->place_objects(GOAL, 1);
 
         for (int i = 0; i < grid_size; i++) {
             set_obj(i, WALL_OBJ);
