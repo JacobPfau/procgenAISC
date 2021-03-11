@@ -18,6 +18,7 @@ ENV_NAMES = [
     "chaser",
     "climber",
     "coinrun",
+    "coinrun_aisc",
     "dodgeball",
     "fruitbot",
     "heist",
@@ -28,11 +29,11 @@ ENV_NAMES = [
     "ninja",
     "plunder",
     "starpilot",
-    "coinrun_AISC"
 ]
 
 EXPLORATION_LEVEL_SEEDS = {
     "coinrun": 1949448038,
+    "coinrun_aisc": 1949448038,
     "caveflyer": 1259048185,
     "leaper": 1318677581,
     "jumper": 1434825276,

@@ -54,6 +54,7 @@ add_library(env
   src/games/climber.cpp
   src/games/coinrun_old.cpp
   src/games/coinrun.cpp
+  src/games/coinrun_aisc.cpp
   src/games/fruitbot.cpp
   src/games/heist.cpp
   src/games/jumper.cpp
@@ -64,7 +65,6 @@ add_library(env
   src/games/chaser.cpp
   src/games/plunder.cpp
   src/games/starpilot.cpp
-  src/games/coinrun_AISC.cpp
   src/mazegen.cpp
   src/randgen.cpp
   src/roomgen.cpp

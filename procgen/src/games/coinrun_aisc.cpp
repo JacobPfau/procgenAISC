@@ -6,7 +6,7 @@
 #include "../cpp-utils.h"
 #include "../qt-utils.h"
 
-const std::string NAME = "coinrun";
+const std::string NAME = "coinrun_aisc";
 
 const float GOAL_REWARD = 10.0f;
 
@@ -29,11 +29,11 @@ const int ENEMY_BARRIER = 19;
 
 const int CRATE = 20;
 
-std::vector<std::string> WALKING_ENEMIES = {"slimeBlock", "slimePurple", "slimeBlue", "slimeGreen", "mouse", "snail", "ladybug", "wormGreen", "wormPink"};
-std::vector<std::string> PLAYER_THEME_COLORS = {"Beige", "Blue", "Green", "Pink", "Yellow"};
-std::vector<std::string> GROUND_THEMES = {"Dirt", "Grass", "Planet", "Sand", "Snow", "Stone"};
+std::vector<std::string> WALKING_ENEMIES_AISC = {"slimeBlock", "slimePurple", "slimeBlue", "slimeGreen", "mouse", "snail", "ladybug", "wormGreen", "wormPink"};
+std::vector<std::string> PLAYER_THEME_COLORS_AISC = {"Beige", "Blue", "Green", "Pink", "Yellow"};
+std::vector<std::string> GROUND_THEMES_AISC = {"Dirt", "Grass", "Planet", "Sand", "Snow", "Stone"};
 
-const int NUM_GROUND_THEMES = (int)(GROUND_THEMES.size());
+const int NUM_GROUND_THEMES = (int)(GROUND_THEMES_AISC.size());
 
 class CoinRun : public BasicAbstractGame {
   public:
@@ -71,37 +71,37 @@ class CoinRun : public BasicAbstractGame {
 
     void asset_for_type(int type, std::vector<std::string> &names) override {
         if (type == PLAYER) {
-            for (const auto &color : PLAYER_THEME_COLORS) {
+            for (const auto &color : PLAYER_THEME_COLORS_AISC) {
                 names.push_back("kenney/Players/128x256/" + color + "/alien" + color + "_stand.png");
             }
         } else if (type == PLAYER_JUMP) {
-            for (const auto &color : PLAYER_THEME_COLORS) {
+            for (const auto &color : PLAYER_THEME_COLORS_AISC) {
                 names.push_back("kenney/Players/128x256/" + color + "/alien" + color + "_jump.png");
             }
         } else if (type == PLAYER_RIGHT1) {
-            for (const auto &color : PLAYER_THEME_COLORS) {
+            for (const auto &color : PLAYER_THEME_COLORS_AISC) {
                 names.push_back("kenney/Players/128x256/" + color + "/alien" + color + "_walk1.png");
             }
         } else if (type == PLAYER_RIGHT2) {
-            for (const auto &color : PLAYER_THEME_COLORS) {
+            for (const auto &color : PLAYER_THEME_COLORS_AISC) {
                 names.push_back("kenney/Players/128x256/" + color + "/alien" + color + "_walk2.png");
             }
         } else if (type == ENEMY1) {
-            for (const auto &enemy : WALKING_ENEMIES) {
+            for (const auto &enemy : WALKING_ENEMIES_AISC) {
                 names.push_back("kenney/Enemies/" + enemy + ".png");
             }
         } else if (type == ENEMY2) {
-            for (const auto &enemy : WALKING_ENEMIES) {
+            for (const auto &enemy : WALKING_ENEMIES_AISC) {
                 names.push_back("kenney/Enemies/" + enemy + "_move.png");
             }
         } else if (type == GOAL) {
             names.push_back("kenney/Items/coinGold.png");
         } else if (type == WALL_TOP) {
-            for (const auto &ground : GROUND_THEMES) {
+            for (const auto &ground : GROUND_THEMES_AISC) {
                 names.push_back("kenney/Ground/" + ground + "/" + to_lower(ground) + "Mid.png");
             }
         } else if (type == WALL_MID) {
-            for (const auto &ground : GROUND_THEMES) {
+            for (const auto &ground : GROUND_THEMES_AISC) {
                 names.push_back("kenney/Ground/" + ground + "/" + to_lower(ground) + "Center.png");
             }
         } else if (type == LAVA_TOP) {
