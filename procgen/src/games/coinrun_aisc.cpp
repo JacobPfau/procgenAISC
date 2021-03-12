@@ -35,7 +35,7 @@ std::vector<std::string> GROUND_THEMES_AISC = {"Dirt", "Grass", "Planet", "Sand"
 
 const int NUM_GROUND_THEMES = (int)(GROUND_THEMES_AISC.size());
 
-class CoinRun : public BasicAbstractGame {
+class CoinRunAISC : public BasicAbstractGame {
   public:
     std::shared_ptr<Entity> goal;
     float last_agent_y = 0.0f;
@@ -46,7 +46,7 @@ class CoinRun : public BasicAbstractGame {
     float gravity = 0.0f;
     float air_control = 0.0f;
 
-    CoinRun()
+    CoinRunAISC()
         : BasicAbstractGame(NAME) {
         visibility = 13;
         mixrate = 0.2f;
@@ -537,4 +537,4 @@ class CoinRun : public BasicAbstractGame {
     }
 };
 
-REGISTER_GAME(NAME, CoinRun);
+REGISTER_GAME(NAME, CoinRunAISC);
