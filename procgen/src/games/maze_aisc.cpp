@@ -6,6 +6,7 @@ const std::string NAME = "maze_aisc";
 const float REWARD = 10.0;
 
 const int GOAL = 2;
+const int ARROW = 3;
 
 class MazeGameAISC : public BasicAbstractGame {
   public:
@@ -71,8 +72,8 @@ class MazeGameAISC : public BasicAbstractGame {
         agent->y = margin + .5;
 
         maze_gen_aisc->generate_maze();
-        maze_gen-> deterministic_place(GOAL, false);
-        maze_gen-> deterministic_place(ARROW, true);
+        maze_gen_aisc-> deterministic_place(GOAL, false);
+        maze_gen_aisc-> deterministic_place(ARROW, true);
         // maze_gen_aisc->place_objects(GOAL, 1);
 
         for (int i = 0; i < grid_size; i++) {

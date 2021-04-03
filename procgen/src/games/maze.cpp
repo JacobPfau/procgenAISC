@@ -13,6 +13,7 @@ class MazeGame : public BasicAbstractGame {
     int maze_dim = 0;
     int world_dim = 0;
 
+
     MazeGame()
         : BasicAbstractGame(NAME) {
         timeout = 500;
