@@ -73,7 +73,7 @@ class MazeGameAISC : public BasicAbstractGame {
 
         maze_gen_aisc->generate_maze();
         maze_gen_aisc-> deterministic_place(GOAL, false);
-        maze_gen_aisc-> deterministic_place(ARROW, true);
+        // maze_gen_aisc-> deterministic_place(ARROW, true);
         // maze_gen_aisc->place_objects(GOAL, 1);
 
         for (int i = 0; i < grid_size; i++) {
