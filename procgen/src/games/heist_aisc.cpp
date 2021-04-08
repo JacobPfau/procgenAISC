@@ -20,6 +20,9 @@ class HeistGameAISC : public BasicAbstractGame {
     int world_dim = 0;
     int num_keys = 0;
     std::vector<bool> has_keys;
+    int agent_keys = 0;
+    int env_chests = 0;
+    int total_chests = 0;
 
     HeistGameAISC()
         : BasicAbstractGame(NAME) {
@@ -78,19 +81,21 @@ class HeistGameAISC : public BasicAbstractGame {
     }
 
     bool use_block_asset(int type) override {
-        return BasicAbstractGame::use_block_asset(type) || (type == WALL_OBJ) || (type == LOCKED_DOOR);
+        return BasicAbstractGame::use_block_asset(type) || (type == WALL_OBJ);
     }
 
     bool is_blocked_ents(const std::shared_ptr<Entity> &src, const std::shared_ptr<Entity> &target, bool is_horizontal) override {
         if (target->type == LOCKED_DOOR)
-            return !has_keys[target->image_theme];
+            // return !has_keys[target->image_theme];
+            return false; 
+            // agent_keys==0;
 
         return BasicAbstractGame::is_blocked_ents(src, target, is_horizontal);
     }
 
     bool should_draw_entity(const std::shared_ptr<Entity> &entity) override {
         if (entity->type == KEY_ON_RING)
-            return has_keys[entity->image_theme];
+            return entity->image_theme < agent_keys;
 
         return BasicAbstractGame::should_draw_entity(entity);
     }
@@ -98,17 +103,33 @@ class HeistGameAISC : public BasicAbstractGame {
     void handle_agent_collision(const std::shared_ptr<Entity> &obj) override {
         BasicAbstractGame::handle_agent_collision(obj);
 
-        if (obj->type == EXIT) {
-            step_data.done = true;
-            step_data.reward = COMPLETION_BONUS;
-            step_data.level_complete = true;
-        } else if (obj->type == KEY) {
+        // if (obj->type == EXIT) {
+        //     step_data.done = true;
+        //     step_data.reward = COMPLETION_BONUS;
+        //     step_data.level_complete = true;
+            // comment out above
+        // } else 
+        if (obj->type == KEY) {
             obj->will_erase = true;
-            has_keys[obj->image_theme] = true;
+            // has_keys[obj->image_theme] = true;
+            agent_keys += 1;
         } else if (obj->type == LOCKED_DOOR) {
-            int door_num = obj->image_theme;
-            if (has_keys[door_num]) {
+            if (agent_keys>0){
                 obj->will_erase = true;
+                agent_keys += -1;
+                env_chests += -1;
+                step_data.reward = 1;
+                // add reward/completion check here
+            }
+            if (env_chests==0){
+                step_data.done = true;
+                step_data.reward = COMPLETION_BONUS;
+                step_data.level_complete = true;
+            }
+            if (total_chests-num_keys==env_chests){
+                step_data.done = true;
+                step_data.reward = COMPLETION_BONUS;
+                step_data.level_complete = true;
             }
         }
     }
@@ -136,18 +157,34 @@ class HeistGameAISC : public BasicAbstractGame {
         int min_maze_dim = 5;
         int max_diff = (world_dim - min_maze_dim) / 2;
         int difficulty = rand_gen.randn(max_diff + 1);
-
         options.center_agent = options.distribution_mode == MemoryMode;
 
-        num_keys = 5;
+
+        // MANY CHESTS SETTING
+        if (options.distribution_mode == MemoryMode) {
+            num_keys = rand_gen.randn(4);
+            env_chests = num_keys + rand_gen.randn(7);
+        } else {
+            num_keys = difficulty + rand_gen.randn(2);
+            env_chests = num_keys + rand_gen.randn(5);
+        }
+        total_chests = env_chests;
+
+        // MANY KEYS SETTING
         // if (options.distribution_mode == MemoryMode) {
-        //     num_keys = rand_gen.randn(4);
+        //     env_chests = rand_gen.randn(4);
+        //     num_keys = env_chests + rand_gen.randn(4);
         // } else {
-        //     num_keys = difficulty + rand_gen.randn(2);
+        //     env_chests = difficulty + rand_gen.randn(2);
+        //     num_keys = env_chests + rand_gen.randn(2);
         // }
 
-        // if (num_keys > 3)
-        //     num_keys = 3;
+        if (env_chests == 0){
+            env_chests = 1;
+            if (num_keys == 0){
+                num_keys = 1;
+            }
+        }
 
         has_keys.clear();
 
@@ -164,7 +201,7 @@ class HeistGameAISC : public BasicAbstractGame {
         float r_ent = maze_scale / 2;
 
         maze_gen_aisc = std::make_shared<MazeGen>(&rand_gen, maze_dim);
-        maze_gen_aisc->generate_maze_with_doors_aisc(num_keys,num_keys+1);
+        maze_gen_aisc->generate_maze_with_doors_aisc(env_chests,num_keys);
 
         // move agent out of the way for maze generation
         agent->x = -1;

@@ -110,7 +110,7 @@ class MazeGameAISC : public BasicAbstractGame {
 
         if (action_vx > 0)
             agent->is_reflected = true;
-        if (action_vx < 0)
+        if (action_vx < 0) 
             agent->is_reflected = false;
 
         int ix = int(agent->x);
@@ -122,7 +122,7 @@ class MazeGameAISC : public BasicAbstractGame {
             step_data.level_complete = true;
         }
 
-        step_data.done = step_data.reward > 0;
+        step_data.done = step_data.reward> 0;
     }
 
     void serialize(WriteBuffer *b) override {

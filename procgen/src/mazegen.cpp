@@ -358,9 +358,9 @@ void MazeGen::generate_maze_with_doors_aisc(int num_doors, int num_keys) {
         fassert(space_cells.size() > 0);
 
         int key_cell = rand_gen->choose_one(space_cells);
-        grid.set_index(key_cell, door_num == num_doors
-                                     ? EXIT_OBJ
-                                     : (KEY_OBJ + door_num + 1));
+        if (door_num<num_keys){
+            grid.set_index(key_cell, KEY_OBJ + door_num + 1);
+        }
 
         s0.insert(s1.begin(), s1.end());
 
@@ -369,31 +369,33 @@ void MazeGen::generate_maze_with_doors_aisc(int num_doors, int num_keys) {
         }
     }
 
-    for (int key_num = num_doors; key_num < num_keys + 1; key_num++){
-        std::set<int> s0;
-        s0.insert(agent_cell);
+    if (num_keys>num_doors){
+        for (int key_num = num_doors; key_num < num_keys + 1; key_num++){
+            std::set<int> s0;
+            s0.insert(agent_cell);
 
-        std::set<int> s1;
-        int found_door = -1;
+            std::set<int> s1;
+            int found_door = -1;
 
-        if (key_num < num_keys) {
-            found_door = expand_to_type(s0, s1, DOOR_OBJ);
-            grid.set_index(found_door, DOOR_OBJ + key_num + 1);
-            s0.insert(s1.begin(), s1.end());
+            if (key_num < num_keys) {
+                found_door = expand_to_type(s0, s1, DOOR_OBJ);
+                grid.set_index(found_door, DOOR_OBJ + key_num + 1);
+                s0.insert(s1.begin(), s1.end());
+            }
+
+            expand_to_type(s0, s1, -999);
+
+            std::vector<int> space_cells;
+            if (s1.size()==0){ 
+                break;
+            }
+            for (int x : s1) {
+                space_cells.push_back(x);
+            }
+
+            int key_cell = rand_gen->choose_one(space_cells);
+            grid.set_index(key_cell, KEY_OBJ + key_num + 1);
         }
-
-        expand_to_type(s0, s1, -999);
-
-        std::vector<int> space_cells;
-
-        for (int x : s1) {
-            space_cells.push_back(x);
-        }
-        
-        int key_cell = rand_gen->choose_one(space_cells);
-        grid.set_index(key_cell, key_num == num_keys
-                                     ? EXIT_OBJ
-                                     : (KEY_OBJ + key_num + 1));
     }
 }
 
