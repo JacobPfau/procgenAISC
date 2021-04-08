@@ -52,7 +52,25 @@ class HeistGameAISC : public BasicAbstractGame {
             names.push_back("misc_assets/keyBlue.png");
             names.push_back("misc_assets/keyGreen.png");
             names.push_back("misc_assets/keyRed.png");
+            names.push_back("misc_assets/keyBlue.png");
+            names.push_back("misc_assets/keyGreen.png");
+            names.push_back("misc_assets/keyRed.png");
+            names.push_back("misc_assets/keyBlue.png");
+            names.push_back("misc_assets/keyGreen.png");
+            names.push_back("misc_assets/keyRed.png");
+            names.push_back("misc_assets/keyBlue.png");
+            names.push_back("misc_assets/keyGreen.png");
+            names.push_back("misc_assets/keyRed.png");
         } else if (type == LOCKED_DOOR) {
+            names.push_back("misc_assets/lock_blue.png");
+            names.push_back("misc_assets/lock_green.png");
+            names.push_back("misc_assets/lock_red.png");
+            names.push_back("misc_assets/lock_blue.png");
+            names.push_back("misc_assets/lock_green.png");
+            names.push_back("misc_assets/lock_red.png");
+            names.push_back("misc_assets/lock_blue.png");
+            names.push_back("misc_assets/lock_green.png");
+            names.push_back("misc_assets/lock_red.png");
             names.push_back("misc_assets/lock_blue.png");
             names.push_back("misc_assets/lock_green.png");
             names.push_back("misc_assets/lock_red.png");
@@ -121,14 +139,15 @@ class HeistGameAISC : public BasicAbstractGame {
 
         options.center_agent = options.distribution_mode == MemoryMode;
 
-        if (options.distribution_mode == MemoryMode) {
-            num_keys = rand_gen.randn(4);
-        } else {
-            num_keys = difficulty + rand_gen.randn(2);
-        }
+        num_keys = 5;
+        // if (options.distribution_mode == MemoryMode) {
+        //     num_keys = rand_gen.randn(4);
+        // } else {
+        //     num_keys = difficulty + rand_gen.randn(2);
+        // }
 
-        if (num_keys > 3)
-            num_keys = 3;
+        // if (num_keys > 3)
+        //     num_keys = 3;
 
         has_keys.clear();
 
@@ -145,7 +164,7 @@ class HeistGameAISC : public BasicAbstractGame {
         float r_ent = maze_scale / 2;
 
         maze_gen_aisc = std::make_shared<MazeGen>(&rand_gen, maze_dim);
-        maze_gen_aisc->generate_maze_with_doors(num_keys);
+        maze_gen_aisc->generate_maze_with_doors_aisc(num_keys,num_keys+1);
 
         // move agent out of the way for maze generation
         agent->x = -1;

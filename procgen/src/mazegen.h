@@ -21,6 +21,7 @@ class MazeGen {
     void generate_maze();
     void generate_maze_no_dead_ends();
     void generate_maze_with_doors(int num_doors);
+    void generate_maze_with_doors_aisc(int num_doors, int num_keys);
     void place_objects(int start_obj, int num_objs);
     void deterministic_place(int start_obj, bool arrow);
 
