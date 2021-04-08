@@ -57,6 +57,7 @@ add_library(env
   src/games/coinrun_aisc.cpp
   src/games/fruitbot.cpp
   src/games/heist.cpp
+  src/games/heist_aisc.cpp
   src/games/jumper.cpp
   src/games/leaper.cpp
   src/games/maze.cpp

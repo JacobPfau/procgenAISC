@@ -22,6 +22,7 @@ ENV_NAMES = [
     "dodgeball",
     "fruitbot",
     "heist",
+    "heist_aisc",
     "jumper",
     "leaper",
     "maze",
@@ -41,6 +42,7 @@ EXPLORATION_LEVEL_SEEDS = {
     "maze": 158988835,
     "maze_aisc": 158988835,
     "heist": 876640971,
+    "heist_aisc": 876640971,
     "climber": 1561126160,
     "ninja": 1123500215,
 }
