@@ -64,7 +64,31 @@ class HeistGameAISC : public BasicAbstractGame {
             names.push_back("misc_assets/keyBlue.png");
             names.push_back("misc_assets/keyGreen.png");
             names.push_back("misc_assets/keyRed.png");
+            names.push_back("misc_assets/keyBlue.png");
+            names.push_back("misc_assets/keyGreen.png");
+            names.push_back("misc_assets/keyRed.png");
+            names.push_back("misc_assets/keyBlue.png");
+            names.push_back("misc_assets/keyGreen.png");
+            names.push_back("misc_assets/keyRed.png");
+            names.push_back("misc_assets/keyBlue.png");
+            names.push_back("misc_assets/keyGreen.png");
+            names.push_back("misc_assets/keyRed.png");
+            names.push_back("misc_assets/keyBlue.png");
+            names.push_back("misc_assets/keyGreen.png");
+            names.push_back("misc_assets/keyRed.png");
         } else if (type == LOCKED_DOOR) {
+            names.push_back("misc_assets/lock_blue.png");
+            names.push_back("misc_assets/lock_green.png");
+            names.push_back("misc_assets/lock_red.png");
+            names.push_back("misc_assets/lock_blue.png");
+            names.push_back("misc_assets/lock_green.png");
+            names.push_back("misc_assets/lock_red.png");
+            names.push_back("misc_assets/lock_blue.png");
+            names.push_back("misc_assets/lock_green.png");
+            names.push_back("misc_assets/lock_red.png");
+            names.push_back("misc_assets/lock_blue.png");
+            names.push_back("misc_assets/lock_green.png");
+            names.push_back("misc_assets/lock_red.png");
             names.push_back("misc_assets/lock_blue.png");
             names.push_back("misc_assets/lock_green.png");
             names.push_back("misc_assets/lock_red.png");
@@ -123,12 +147,12 @@ class HeistGameAISC : public BasicAbstractGame {
             }
             if (env_chests==0){
                 step_data.done = true;
-                step_data.reward = COMPLETION_BONUS;
+                // step_data.reward = COMPLETION_BONUS;
                 step_data.level_complete = true;
             }
             if (total_chests-num_keys==env_chests){
                 step_data.done = true;
-                step_data.reward = COMPLETION_BONUS;
+                // step_data.reward = COMPLETION_BONUS;
                 step_data.level_complete = true;
             }
         }
@@ -168,7 +192,6 @@ class HeistGameAISC : public BasicAbstractGame {
             num_keys = difficulty + rand_gen.randn(2);
             env_chests = num_keys + rand_gen.randn(5);
         }
-        total_chests = env_chests;
 
         // MANY KEYS SETTING
         // if (options.distribution_mode == MemoryMode) {
@@ -176,7 +199,7 @@ class HeistGameAISC : public BasicAbstractGame {
         //     num_keys = env_chests + rand_gen.randn(4);
         // } else {
         //     env_chests = difficulty + rand_gen.randn(2);
-        //     num_keys = env_chests + rand_gen.randn(2);
+        //     num_keys = env_chests + rand_gen.randn(5);
         // }
 
         if (env_chests == 0){
@@ -185,6 +208,7 @@ class HeistGameAISC : public BasicAbstractGame {
                 num_keys = 1;
             }
         }
+        total_chests = env_chests;
 
         has_keys.clear();
 

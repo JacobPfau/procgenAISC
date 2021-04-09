@@ -64,7 +64,7 @@ def main():
     )
     parser.add_argument(
         "--env-name",
-        default="maze",
+        default="heist_aisc",
         help="name of game to create " + default_str,
         choices=ENV_NAMES + ["coinrun_old"],
     )

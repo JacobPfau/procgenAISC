@@ -337,6 +337,8 @@ void MazeGen::generate_maze_with_doors_aisc(int num_doors, int num_keys) {
     std::set<int> s0;
     s0.insert(agent_cell);
 
+    int keys_placed = 0; //new
+
     for (int door_num = 0; door_num < num_doors + 1; door_num++) {
         std::set<int> s1;
         int found_door = -1;
@@ -360,6 +362,13 @@ void MazeGen::generate_maze_with_doors_aisc(int num_doors, int num_keys) {
         int key_cell = rand_gen->choose_one(space_cells);
         if (door_num<num_keys){
             grid.set_index(key_cell, KEY_OBJ + door_num + 1);
+            keys_placed +=1;
+        }
+        int to_place = (int)((float)(num_keys-num_doors)/(float)num_doors);
+        for (int i=0; i<to_place; i++){
+            key_cell = rand_gen->choose_one(space_cells);
+            grid.set_index(key_cell, KEY_OBJ + door_num + 1);
+            keys_placed +=1;
         }
 
         s0.insert(s1.begin(), s1.end());
@@ -369,8 +378,8 @@ void MazeGen::generate_maze_with_doors_aisc(int num_doors, int num_keys) {
         }
     }
 
-    if (num_keys>num_doors){
-        for (int key_num = num_doors; key_num < num_keys + 1; key_num++){
+    if (num_keys>num_doors && keys_placed<num_keys){
+        for (int key_num = keys_placed; key_num < num_keys + 1; key_num++){
             std::set<int> s0;
             s0.insert(agent_cell);
 
