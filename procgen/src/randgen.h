@@ -11,7 +11,7 @@ Random number generator with consistent behavior across platforms
 
 class RandGen {
   public:
-    std::mt19937 stdgen;
+    std::mt19937 stdgen; // mersenne twister. calling stdgen() generates numbers like 4257284220
     int randint(int low, int high);
     int randn(int high);
     float rand01();

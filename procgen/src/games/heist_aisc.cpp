@@ -186,11 +186,13 @@ class HeistGameAISC : public BasicAbstractGame {
 
         // MANY CHESTS SETTING
         if (options.distribution_mode == MemoryMode) {
-            num_keys = rand_gen.randn(4);
+            num_keys = rand_gen.randn(4) + 1;
             env_chests = num_keys + rand_gen.randn(7);
+
         } else {
-            num_keys = difficulty + rand_gen.randn(2);
+            num_keys = difficulty + rand_gen.randn(2) + 1;
             env_chests = num_keys + rand_gen.randn(5);
+
         }
 
         // MANY KEYS SETTING
@@ -202,12 +204,6 @@ class HeistGameAISC : public BasicAbstractGame {
         //     num_keys = env_chests + rand_gen.randn(5);
         // }
 
-        if (env_chests == 0){
-            env_chests = 1;
-            if (num_keys == 0){
-                num_keys = 1;
-            }
-        }
         total_chests = env_chests;
 
         has_keys.clear();

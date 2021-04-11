@@ -10,7 +10,7 @@ int RandGen::randint(int low, int high) {
     return low + (x % range);
 }
 
-int RandGen::randn(int high) {
+int RandGen::randn(int high) { // generate random integer in {0, ..., high - 1}
     fassert(is_seeded);
     uint32_t x = stdgen();
     return (x % high);
