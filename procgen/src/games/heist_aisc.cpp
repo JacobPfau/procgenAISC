@@ -120,7 +120,6 @@ class HeistGameAISC : public BasicAbstractGame {
     bool should_draw_entity(const std::shared_ptr<Entity> &entity) override {
         if (entity->type == KEY_ON_RING)
             return entity->image_theme < agent_keys;
-
         return BasicAbstractGame::should_draw_entity(entity);
     }
 
@@ -144,16 +143,16 @@ class HeistGameAISC : public BasicAbstractGame {
                 env_chests += -1;
                 step_data.reward = 1;
                 // add reward/completion check here
-            }
-            if (env_chests==0){
-                step_data.done = true;
-                // step_data.reward = COMPLETION_BONUS;
-                step_data.level_complete = true;
-            }
-            if (total_chests-num_keys==env_chests){
-                step_data.done = true;
-                // step_data.reward = COMPLETION_BONUS;
-                step_data.level_complete = true;
+                 if (env_chests==0){
+                    step_data.done = true;
+                    // step_data.reward = COMPLETION_BONUS;
+                    step_data.level_complete = true;
+                }
+                if (total_chests-num_keys==env_chests){
+                    step_data.done = true;
+                    // step_data.reward = COMPLETION_BONUS;
+                    step_data.level_complete = true;
+                }
             }
         }
     }
@@ -185,29 +184,23 @@ class HeistGameAISC : public BasicAbstractGame {
 
 
         // MANY CHESTS SETTING
-        if (options.distribution_mode == MemoryMode) {
-            num_keys = rand_gen.randn(4);
-            env_chests = num_keys + rand_gen.randn(7);
-        } else {
-            num_keys = difficulty + rand_gen.randn(2);
-            env_chests = num_keys + rand_gen.randn(5);
-        }
-
-        // MANY KEYS SETTING
         // if (options.distribution_mode == MemoryMode) {
-        //     env_chests = rand_gen.randn(4);
-        //     num_keys = env_chests + rand_gen.randn(4);
+        //     num_keys = rand_gen.randn(4)+1;
+        //     env_chests = num_keys + rand_gen.randn(7);
         // } else {
-        //     env_chests = difficulty + rand_gen.randn(2);
-        //     num_keys = env_chests + rand_gen.randn(5);
+        //     num_keys = difficulty + rand_gen.randn(2)+1;
+        //     env_chests = num_keys + rand_gen.randn(5);
         // }
 
-        if (env_chests == 0){
-            env_chests = 1;
-            if (num_keys == 0){
-                num_keys = 1;
-            }
+        // MANY KEYS SETTING
+        if (options.distribution_mode == MemoryMode) {
+            env_chests = rand_gen.randn(4);
+            num_keys = env_chests + rand_gen.randn(4);
+        } else {
+            env_chests = difficulty + rand_gen.randn(2);
+            num_keys = env_chests + rand_gen.randn(5);
         }
+
         total_chests = env_chests;
 
         has_keys.clear();

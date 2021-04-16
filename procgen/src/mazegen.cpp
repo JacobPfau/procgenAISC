@@ -229,6 +229,7 @@ void MazeGen::generate_maze_with_doors(int num_doors) {
             }
         }
     }
+    fassert(forks.size()>num_doors);
 
     std::vector<int> chosen = rand_gen->choose_n(forks, num_doors);
 
@@ -304,12 +305,13 @@ void MazeGen::generate_maze_with_doors_aisc(int num_doors, int num_keys) {
             get_neighbors(i, SPACE, adj_space);
             get_neighbors(i, WALL_OBJ, adj_wall);
 
-            if (adj_space.size() > 2) {
+            if (adj_space.size() > 1) {
                 forks.push_back(i);
             }
         }
     }
-
+    fassert(forks.size() > num_doors);  //new
+    
     std::vector<int> chosen = rand_gen->choose_n(forks, num_doors);
 
     num_doors = (int)(chosen.size());
@@ -338,6 +340,20 @@ void MazeGen::generate_maze_with_doors_aisc(int num_doors, int num_keys) {
     s0.insert(agent_cell);
 
     int keys_placed = 0; //new
+    if (num_doors<2){ // fix the one chest no keys problem
+        std::set<int> s1;
+        expand_to_type(s0, s1, DOOR_OBJ);
+        s0.insert(s1.begin(), s1.end());
+        expand_to_type(s0, s1, -999);
+        std::vector<int> space_cells;
+        for (int x : s1) {
+            space_cells.push_back(x);
+        }
+        fassert(space_cells.size() > 0);
+        int key_cell = rand_gen->choose_one(space_cells);
+        grid.set_index(key_cell, KEY_OBJ + 1);
+        keys_placed +=1;
+    }
 
     for (int door_num = 0; door_num < num_doors + 1; door_num++) {
         std::set<int> s1;
@@ -357,7 +373,10 @@ void MazeGen::generate_maze_with_doors_aisc(int num_doors, int num_keys) {
             space_cells.push_back(x);
         }
 
-        fassert(space_cells.size() > 0);
+        if(space_cells.size() > 0){
+            keys_placed=num_keys;
+            break;
+        }
 
         int key_cell = rand_gen->choose_one(space_cells);
         if (door_num<num_keys){
@@ -385,7 +404,7 @@ void MazeGen::generate_maze_with_doors_aisc(int num_doors, int num_keys) {
 
             std::set<int> s1;
             int found_door = -1;
-
+            
             if (key_num < num_keys) {
                 found_door = expand_to_type(s0, s1, DOOR_OBJ);
                 grid.set_index(found_door, DOOR_OBJ + key_num + 1);
