@@ -364,7 +364,7 @@ void MazeGen::generate_maze_with_doors_aisc(int num_doors, int num_keys) {
                 grid.set_index(key_cell, KEY_OBJ + door_num + 1);
                 keys_placed +=1;
             }
-            int to_place = (int)((float)(num_keys-num_doors)/(float)num_doors);
+            int to_place = (int)((float)(num_keys-keys_placed)/(float)(num_doors-door_num));
             for (int i=0; i<to_place; i++){
                 key_cell = rand_gen->choose_one(space_cells);
                 grid.set_index(key_cell, KEY_OBJ + door_num + 1);
