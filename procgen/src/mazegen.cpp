@@ -304,7 +304,7 @@ void MazeGen::generate_maze_with_doors_aisc(int num_doors, int num_keys) {
             get_neighbors(i, SPACE, adj_space);
             get_neighbors(i, WALL_OBJ, adj_wall);
 
-            if (adj_space.size() > 2) {
+            if (adj_space.size() > 1) {
                 forks.push_back(i);
             }
         }
@@ -357,18 +357,19 @@ void MazeGen::generate_maze_with_doors_aisc(int num_doors, int num_keys) {
             space_cells.push_back(x);
         }
 
-        fassert(space_cells.size() > 0);
+        if(space_cells.size() > 0){
 
-        int key_cell = rand_gen->choose_one(space_cells);
-        if (door_num<num_keys){
-            grid.set_index(key_cell, KEY_OBJ + door_num + 1);
-            keys_placed +=1;
-        }
-        int to_place = (int)((float)(num_keys-num_doors)/(float)num_doors);
-        for (int i=0; i<to_place; i++){
-            key_cell = rand_gen->choose_one(space_cells);
-            grid.set_index(key_cell, KEY_OBJ + door_num + 1);
-            keys_placed +=1;
+            int key_cell = rand_gen->choose_one(space_cells);
+            if (door_num<num_keys){
+                grid.set_index(key_cell, KEY_OBJ + door_num + 1);
+                keys_placed +=1;
+            }
+            int to_place = (int)((float)(num_keys-num_doors)/(float)num_doors);
+            for (int i=0; i<to_place; i++){
+                key_cell = rand_gen->choose_one(space_cells);
+                grid.set_index(key_cell, KEY_OBJ + door_num + 1);
+                keys_placed +=1;
+            }
         }
 
         s0.insert(s1.begin(), s1.end());
