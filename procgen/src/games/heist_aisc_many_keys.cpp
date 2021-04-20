@@ -5,7 +5,7 @@
 #include "../mazegen.h"
 #include "../cpp-utils.h"
 
-const std::string NAME = "heist_aisc";
+const std::string NAME = "heist_aisc_many_keys";
 
 const float COMPLETION_BONUS = 10.0f;
 
@@ -14,7 +14,7 @@ const int KEY = 2;
 const int EXIT = 9;
 const int KEY_ON_RING = 11;
 
-class HeistGameAISC : public BasicAbstractGame {
+class HeistGameAISC_ManyKeys : public BasicAbstractGame {
   public:
     std::shared_ptr<MazeGen> maze_gen_aisc;
     int world_dim = 0;
@@ -24,7 +24,7 @@ class HeistGameAISC : public BasicAbstractGame {
     int env_chests = 0;
     int total_chests = 0;
 
-    HeistGameAISC()
+    HeistGameAISC_ManyKeys()
         : BasicAbstractGame(NAME) {
         maze_gen_aisc = nullptr;
         has_useful_vel_info = false;
@@ -184,25 +184,13 @@ class HeistGameAISC : public BasicAbstractGame {
         int difficulty = rand_gen.randn(max_diff + 1);
         options.center_agent = options.distribution_mode == MemoryMode;
 
-
-        // MANY CHESTS SETTING
         if (options.distribution_mode == MemoryMode) {
-            num_keys = rand_gen.randn(4) + 1;
-            env_chests = num_keys*2;
-
+            env_chests = rand_gen.randn(4);
+            num_keys = env_chests*2;
         } else {
-            num_keys = difficulty + rand_gen.randn(2) + 1;
-            env_chests = num_keys*2;
+            env_chests = difficulty + rand_gen.randn(2) + 1;
+            num_keys = env_chests*2;
         }
-
-        // MANY KEYS SETTING
-        // if (options.distribution_mode == MemoryMode) {
-        //     env_chests = rand_gen.randn(4);
-        //     num_keys = env_chests*2;
-        // } else {
-        //     env_chests = difficulty + rand_gen.randn(2) + 1;
-        //     num_keys = env_chests*2;
-        // }
 
         total_chests = env_chests;
 
@@ -299,4 +287,4 @@ class HeistGameAISC : public BasicAbstractGame {
     }
 };
 
-REGISTER_GAME(NAME, HeistGameAISC);
+REGISTER_GAME(NAME, HeistGameAISC_ManyKeys);

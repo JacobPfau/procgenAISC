@@ -60,7 +60,7 @@ void Game::parse_options(std::string name, VecOptions opts) {
     } else if (options.distribution_mode == ExtremeMode) {
         fassert(name == "chaser" || name == "dodgeball" || name == "leaper" || name == "starpilot");
     } else if (options.distribution_mode == MemoryMode) {
-        fassert(name == "caveflyer" || name == "dodgeball" || name == "heist" || name == "heist_aisc" || name == "jumper" || name == "maze" || name == "miner");
+        fassert(name == "caveflyer" || name == "dodgeball" || name == "heist" || name == "heist_aisc_many_chests" || name == "heist_aisc_many_keys" || name == "jumper" || name == "maze" || name == "miner");
     } else {
         fatal("invalid distribution_mode %d\n", options.distribution_mode);
     }
