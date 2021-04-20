@@ -192,6 +192,7 @@ class HeistGameAISC_ManyKeys : public BasicAbstractGame {
             num_keys = env_chests*2;
         }
 
+		agent_keys = 0;
         total_chests = env_chests;
 
         has_keys.clear();

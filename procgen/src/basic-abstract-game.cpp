@@ -17,7 +17,7 @@ const float RENDER_EPS = 0.02f;
 // objects with type higher than this threshold will be rendered with colored grid squares
 const int USE_ASSET_THRESHOLD = 100;
 const int MAX_ASSETS = USE_ASSET_THRESHOLD;
-const int MAX_IMAGE_THEMES = 10;
+const int MAX_IMAGE_THEMES = 20;
 
 BasicAbstractGame::BasicAbstractGame(std::string name)
     : Game(name) {

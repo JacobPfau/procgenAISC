@@ -194,15 +194,7 @@ class HeistGameAISC_ManyChests : public BasicAbstractGame {
             num_keys = difficulty + rand_gen.randn(2) + 1;
             env_chests = num_keys*2;
         }
-
-        // MANY KEYS SETTING
-        // if (options.distribution_mode == MemoryMode) {
-        //     env_chests = rand_gen.randn(4);
-        //     num_keys = env_chests*2;
-        // } else {
-        //     env_chests = difficulty + rand_gen.randn(2) + 1;
-        //     num_keys = env_chests*2;
-        // }
+		agent_keys = 0;
 
         total_chests = env_chests;
 
