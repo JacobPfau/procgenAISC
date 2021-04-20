@@ -52,55 +52,56 @@ class HeistGameAISC : public BasicAbstractGame {
         } else if (type == PLAYER) {
             names.push_back("misc_assets/spaceAstronauts_008.png");
         } else if (type == KEY) {
-            names.push_back("misc_assets/keyBlue.png");
             names.push_back("misc_assets/keyGreen.png");
-            names.push_back("misc_assets/keyRed.png");
-            names.push_back("misc_assets/keyBlue.png");
             names.push_back("misc_assets/keyGreen.png");
-            names.push_back("misc_assets/keyRed.png");
-            names.push_back("misc_assets/keyBlue.png");
             names.push_back("misc_assets/keyGreen.png");
-            names.push_back("misc_assets/keyRed.png");
-            names.push_back("misc_assets/keyBlue.png");
             names.push_back("misc_assets/keyGreen.png");
-            names.push_back("misc_assets/keyRed.png");
-            names.push_back("misc_assets/keyBlue.png");
             names.push_back("misc_assets/keyGreen.png");
-            names.push_back("misc_assets/keyRed.png");
-            names.push_back("misc_assets/keyBlue.png");
             names.push_back("misc_assets/keyGreen.png");
-            names.push_back("misc_assets/keyRed.png");
-            names.push_back("misc_assets/keyBlue.png");
             names.push_back("misc_assets/keyGreen.png");
-            names.push_back("misc_assets/keyRed.png");
-            names.push_back("misc_assets/keyBlue.png");
             names.push_back("misc_assets/keyGreen.png");
-            names.push_back("misc_assets/keyRed.png");
+            names.push_back("misc_assets/keyGreen.png");
+            names.push_back("misc_assets/keyGreen.png");
+            names.push_back("misc_assets/keyGreen.png");
+            names.push_back("misc_assets/keyGreen.png");
+            names.push_back("misc_assets/keyGreen.png");
+            names.push_back("misc_assets/keyGreen.png");
+            names.push_back("misc_assets/keyGreen.png");
+            names.push_back("misc_assets/keyGreen.png");
+            names.push_back("misc_assets/keyGreen.png");
+            names.push_back("misc_assets/keyGreen.png");
+            names.push_back("misc_assets/keyGreen.png");
+            names.push_back("misc_assets/keyGreen.png");
+            names.push_back("misc_assets/keyGreen.png");
         } else if (type == LOCKED_DOOR) {
             names.push_back("misc_assets/lock_blue.png");
-            names.push_back("misc_assets/lock_green.png");
-            names.push_back("misc_assets/lock_red.png");
             names.push_back("misc_assets/lock_blue.png");
-            names.push_back("misc_assets/lock_green.png");
-            names.push_back("misc_assets/lock_red.png");
             names.push_back("misc_assets/lock_blue.png");
-            names.push_back("misc_assets/lock_green.png");
-            names.push_back("misc_assets/lock_red.png");
             names.push_back("misc_assets/lock_blue.png");
-            names.push_back("misc_assets/lock_green.png");
-            names.push_back("misc_assets/lock_red.png");
             names.push_back("misc_assets/lock_blue.png");
-            names.push_back("misc_assets/lock_green.png");
-            names.push_back("misc_assets/lock_red.png");
             names.push_back("misc_assets/lock_blue.png");
-            names.push_back("misc_assets/lock_green.png");
-            names.push_back("misc_assets/lock_red.png");
             names.push_back("misc_assets/lock_blue.png");
-            names.push_back("misc_assets/lock_green.png");
-            names.push_back("misc_assets/lock_red.png");
             names.push_back("misc_assets/lock_blue.png");
-            names.push_back("misc_assets/lock_green.png");
-            names.push_back("misc_assets/lock_red.png");
+            names.push_back("misc_assets/lock_blue.png");
+            names.push_back("misc_assets/lock_blue.png");
+            names.push_back("misc_assets/lock_blue.png");
+            names.push_back("misc_assets/lock_blue.png");
+            names.push_back("misc_assets/lock_blue.png");
+            names.push_back("misc_assets/lock_blue.png");
+            names.push_back("misc_assets/lock_blue.png");
+            names.push_back("misc_assets/lock_blue.png");
+            names.push_back("misc_assets/lock_blue.png");
+            names.push_back("misc_assets/lock_blue.png");
+            names.push_back("misc_assets/lock_blue.png");
+            names.push_back("misc_assets/lock_blue.png");
+            names.push_back("misc_assets/lock_blue.png");
+            names.push_back("misc_assets/lock_blue.png");
+            names.push_back("misc_assets/lock_blue.png");
+            names.push_back("misc_assets/lock_blue.png");
+            names.push_back("misc_assets/lock_blue.png");
+            names.push_back("misc_assets/lock_blue.png");
+            names.push_back("misc_assets/lock_blue.png");
+            names.push_back("misc_assets/lock_blue.png");
         }
     }
 
@@ -187,21 +188,20 @@ class HeistGameAISC : public BasicAbstractGame {
         // MANY CHESTS SETTING
         if (options.distribution_mode == MemoryMode) {
             num_keys = rand_gen.randn(4) + 1;
-            env_chests = num_keys + rand_gen.randn(7);
+            env_chests = num_keys*2;
 
         } else {
             num_keys = difficulty + rand_gen.randn(2) + 1;
-            env_chests = num_keys + rand_gen.randn(5);
-
+            env_chests = num_keys*2;
         }
 
         // MANY KEYS SETTING
         // if (options.distribution_mode == MemoryMode) {
         //     env_chests = rand_gen.randn(4);
-        //     num_keys = env_chests + rand_gen.randn(4);
+        //     num_keys = env_chests*2;
         // } else {
-        //     env_chests = difficulty + rand_gen.randn(2);
-        //     num_keys = env_chests + rand_gen.randn(5);
+        //     env_chests = difficulty + rand_gen.randn(2) + 1;
+        //     num_keys = env_chests*2;
         // }
 
         total_chests = env_chests;
