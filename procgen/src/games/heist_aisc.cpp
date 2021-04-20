@@ -247,7 +247,6 @@ class HeistGameAISC : public BasicAbstractGame {
                 if (obj != WALL_OBJ) {
                     set_obj(x, y, SPACE);
                 }
-
                 if (obj >= KEY_OBJ) {
                     auto ent = spawn_entity(.375 * maze_scale, KEY, maze_scale * x, maze_scale * y, maze_scale, maze_scale);
                     ent->image_theme = obj - KEY_OBJ - 1;
@@ -263,6 +262,7 @@ class HeistGameAISC : public BasicAbstractGame {
                     agent->y = obj_y;
                 }
             }
+
         }
 
         float ring_key_r = 0.03f;
