@@ -178,6 +178,7 @@ VecGame::VecGame(int _nenvs, VecOptions opts) {
 
     int rand_seed = 0;
     int num_threads = 4;
+    int random_percent = 100;
     std::string resource_root;
 
     opts.consume_string("env_name", &env_name);
@@ -188,6 +189,7 @@ VecGame::VecGame(int _nenvs, VecOptions opts) {
     opts.consume_int("num_threads", &num_threads);
     opts.consume_string("resource_root", &resource_root);
     opts.consume_bool("render_human", &render_human);
+    opts.consume_int("random_percent", &random_percent);
 
     std::call_once(global_init_flag, global_init, rand_seed,
                    resource_root);

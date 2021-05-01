@@ -72,6 +72,12 @@ def main():
     parser.add_argument(
         "--level-seed", type=int, help="select an individual level to use"
     )
+    parser.add_argument(
+        "--random-percent",
+        default=100,
+        type=int,
+        help="How often to randomize the level construction",
+    )
 
     advanced_group = parser.add_argument_group("advanced optional switch arguments")
     advanced_group.add_argument(
@@ -120,6 +126,7 @@ def main():
         "use_backgrounds": not args.disable_backgrounds,
         "restrict_themes": args.restrict_themes,
         "use_monochrome_assets": args.use_monochrome_assets,
+        "random_percent": args.random_percent,
     }
     if args.env_name != "coinrun_old":
         kwargs["distribution_mode"] = args.distribution_mode

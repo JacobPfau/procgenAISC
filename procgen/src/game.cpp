@@ -49,6 +49,9 @@ void Game::parse_options(std::string name, VecOptions opts) {
     opts.consume_bool("center_agent", &options.center_agent);
     opts.consume_bool("use_sequential_levels", &options.use_sequential_levels);
 
+    int random_percent=100;
+    opts.consume_int("random_percent", &random_percent); // changed
+
     int dist_mode = EasyMode;
     opts.consume_int("distribution_mode", &dist_mode);
     options.distribution_mode = static_cast<DistributionMode>(dist_mode);
@@ -69,6 +72,7 @@ void Game::parse_options(std::string name, VecOptions opts) {
     opts.consume_int("plain_assets", &options.plain_assets);
     opts.consume_int("physics_mode", &options.physics_mode);
     opts.consume_int("debug_mode", &options.debug_mode);
+    opts.consume_int("random_percent", &options.random_percent);
     opts.consume_int("game_type", &game_type);
 
     opts.ensure_empty();
@@ -180,6 +184,7 @@ void Game::serialize(WriteBuffer *b) {
     b->write_int(options.center_agent);
     b->write_int(options.debug_mode);
     b->write_int(options.distribution_mode);
+    b->write_int(options.random_percent); // changed
     b->write_int(options.use_sequential_levels);
 
     b->write_int(options.use_easy_jump);
@@ -240,6 +245,7 @@ void Game::deserialize(ReadBuffer *b) {
     options.center_agent = b->read_int();
     options.debug_mode = b->read_int();
     options.distribution_mode = DistributionMode(b->read_int());
+    options.random_percent = b->read_int();
     options.use_sequential_levels = b->read_int();
 
     options.use_easy_jump = b->read_int();

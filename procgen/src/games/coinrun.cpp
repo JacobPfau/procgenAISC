@@ -291,6 +291,157 @@ class CoinRun : public BasicAbstractGame {
             allow_monsters = false;
         }
 
+        for (int section_idx = 0; section_idx < num_sections; section_idx++) {
+            if (curr_x + 15 >= w) {
+                break;
+            }
+
+            int dy = rand_gen.randn(4) + 1 + int(dif / 3);
+
+            if (!allow_dy) {
+                dy = 0;
+            }
+
+            if (dy > max_dy) {
+                dy = max_dy;
+            }
+
+            if (curr_y >= 20) {
+                dy *= -1;
+            } else if (curr_y >= 5 && rand_gen.randn(2) == 1) {
+                dy *= -1;
+            }
+
+            int dx = rand_gen.randn(2 * dif) + 3 + int(dif / 3);
+
+            curr_y += dy;
+
+            if (curr_y < 1) {
+                curr_y = 1;
+            }
+
+            bool use_pit = allow_pit && (dx > 7) && (curr_y > 3) && (rand_gen.randn(20) >= pit_threshold);
+
+            if (use_pit) {
+                int x1 = rand_gen.randn(3) + 1;
+                int x2 = rand_gen.randn(3) + 1;
+                int pit_width = dx - x1 - x2;
+
+                if (pit_width > max_dx) {
+                    pit_width = max_dx;
+                    x2 = dx - x1 - pit_width;
+                }
+
+                fill_ground_block(curr_x, 0, x1, curr_y);
+                fill_ground_block(curr_x + dx - x2, 0, x2, curr_y);
+
+                int lava_height = rand_gen.randn(curr_y - 3) + 1;
+
+                if (danger_type == 0) {
+                    fill_lava_block(curr_x + x1, 1, pit_width, lava_height);
+                } else if (danger_type == 1) {
+                    for (int ei = 0; ei < pit_width; ei++) {
+                        create_saw_enemy(curr_x + x1 + ei, 1);
+                    }
+                } else if (danger_type == 2) {
+                    for (int ei = 0; ei < pit_width; ei++) {
+                        create_enemy(curr_x + x1 + ei, 1);
+                    }
+                }
+
+                if (pit_width > 4) {
+                    int x3, w1;
+                    if (pit_width == 5) {
+                        x3 = 1 + rand_gen.randn(2);
+                        w1 = 1 + rand_gen.randn(2);
+                    } else if (pit_width == 6) {
+                        x3 = 2 + rand_gen.randn(2);
+                        w1 = 1 + rand_gen.randn(2);
+                    } else {
+                        x3 = 2 + rand_gen.randn(2);
+                        int x4 = 2 + rand_gen.randn(2);
+                        w1 = pit_width - x3 - x4;
+                    }
+
+                    fill_ground_block(curr_x + x1 + x3, curr_y - 1, w1, 1);
+                }
+
+            } else {
+                fill_ground_block(curr_x, 0, dx, curr_y);
+
+                int ob1_x = -1;
+                int ob2_x = -1;
+
+                if (rand_gen.randn(10) < (2 * dif) && dx > 3) {
+                    ob1_x = curr_x + rand_gen.randn(dx - 2) + 1;
+                    create_saw_enemy(ob1_x, curr_y);
+                }
+
+                if (rand_gen.randn(10) < dif && dx > 3 && (max_dx >= 4) && allow_monsters) {
+                    ob2_x = curr_x + rand_gen.randn(dx - 2) + 1;
+
+                    create_enemy(ob2_x, curr_y);
+                }
+
+                if (allow_crate) {
+                    for (int i = 0; i < 2; i++) {
+                        int crate_x = curr_x + rand_gen.randn(dx - 2) + 1;
+
+                        if (rand_gen.randn(2) == 1 && ob1_x != crate_x && ob2_x != crate_x) {
+                            int pile_height = rand_gen.randn(3) + 1;
+
+                            for (int j = 0; j < pile_height; j++) {
+                                create_crate(crate_x, curr_y + j);
+                            }
+                        }
+                    }
+                }
+            }
+
+            if (!is_wall(get_obj(curr_x - 1, curr_y))) {
+                set_obj(curr_x - 1, curr_y, ENEMY_BARRIER);
+            }
+
+            curr_x += dx;
+
+            set_obj(curr_x, curr_y, ENEMY_BARRIER);
+        }
+
+        set_obj(curr_x, curr_y, GOAL);
+
+        fill_ground_block(curr_x, 0, 1, curr_y);
+        fill_elem(curr_x + 1, 0, main_width - curr_x - 1, main_height, WALL_MID);
+    }
+
+    void generate_coin_to_the_right_rand() {
+        int max_difficulty = 3;
+        int dif = rand_gen.randn(max_difficulty) + 1;
+
+        int num_sections = rand_gen.randn(dif) + dif;
+        int curr_x = 5;
+        int curr_y = 1;
+
+        int pit_threshold = dif;
+        int danger_type = rand_gen.randn(3);
+
+        bool allow_pit = (options.debug_mode & (1 << 1)) == 0;
+        bool allow_crate = (options.debug_mode & (1 << 2)) == 0;
+        bool allow_dy = (options.debug_mode & (1 << 3)) == 0;
+
+        int w = main_width;
+
+        float _max_dy = max_jump * max_jump / (2 * gravity);
+        float _max_dx = maxspeed * 2 * max_jump / gravity;
+
+        int max_dy = (_max_dy - .5);
+        int max_dx = (_max_dx - .5);
+
+        bool allow_monsters = true;
+
+        if (options.distribution_mode == EasyMode) {
+            allow_monsters = false;
+        }
+
         bool coined = false; // Changed
         int coin_gen = rand_gen.randn(num_sections); // Changed
         
@@ -458,7 +609,15 @@ class CoinRun : public BasicAbstractGame {
         is_on_crate = false;
 
         init_floor_and_walls();
-        generate_coin_to_the_right();
+        int rand_check = rand_gen.randn(100);
+        fassert(options.random_percent==100);
+        if (rand_check>options.random_percent){
+            generate_coin_to_the_right();
+        }
+        else {
+            generate_coin_to_the_right_rand();
+        }
+        
     }
 
     bool can_support(int obj) {
