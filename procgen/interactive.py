@@ -72,14 +72,14 @@ def main():
     parser.add_argument(
         "--level-seed", type=int, help="select an individual level to use"
     )
-    parser.add_argument(
+
+    advanced_group = parser.add_argument_group("advanced optional switch arguments")
+    advanced_group.add_argument(
         "--random-percent",
         default=100,
         type=int,
         help="How often to randomize the level construction",
     )
-
-    advanced_group = parser.add_argument_group("advanced optional switch arguments")
     advanced_group.add_argument(
         "--paint-vel-info",
         action="store_true",
