@@ -76,7 +76,7 @@ def main():
     advanced_group = parser.add_argument_group("advanced optional switch arguments")
     advanced_group.add_argument(
         "--random-percent",
-        default=100,
+        default=0,
         type=int,
         help="How often to randomize the level construction",
     )

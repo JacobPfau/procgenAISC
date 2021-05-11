@@ -217,7 +217,7 @@ class ProcgenGym3Env(BaseProcgenEnv):
         use_generated_assets=False,
         paint_vel_info=False,
         distribution_mode="hard",
-        random_percent=100,
+        random_percent=0,
         **kwargs,
     ):
         assert (
