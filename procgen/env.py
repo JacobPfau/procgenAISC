@@ -92,6 +92,7 @@ class BaseProcgenEnv(CEnv):
         resource_root=None,
         num_threads=4,
         render_mode=None,
+        # random_percent=100,
     ):
         if resource_root is None:
             resource_root = os.path.join(SCRIPT_DIR, "data", "assets") + os.sep
@@ -128,6 +129,7 @@ class BaseProcgenEnv(CEnv):
                 "rand_seed": rand_seed,
                 "num_threads": num_threads,
                 "render_human": render_human,
+                # 'random_percent': random_percent,
                 # these will only be used the first time an environment is created in a process
                 "resource_root": resource_root,
             }
@@ -225,6 +227,7 @@ class ProcgenGym3Env(BaseProcgenEnv):
         use_generated_assets=False,
         paint_vel_info=False,
         distribution_mode="hard",
+        random_percent=0,
         **kwargs,
     ):
         assert (
@@ -252,6 +255,7 @@ class ProcgenGym3Env(BaseProcgenEnv):
                 "use_backgrounds": bool(use_backgrounds),
                 "paint_vel_info": bool(paint_vel_info),
                 "distribution_mode": distribution_mode,
+                "random_percent": int(random_percent),
             }
         super().__init__(num, env_name, options, **kwargs)
 

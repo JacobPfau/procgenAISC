@@ -74,6 +74,12 @@ def main():
 
     advanced_group = parser.add_argument_group("advanced optional switch arguments")
     advanced_group.add_argument(
+        "--random-percent",
+        default=0,
+        type=int,
+        help="How often to randomize the level construction",
+    )
+    advanced_group.add_argument(
         "--paint-vel-info",
         action="store_true",
         default=False,
@@ -119,6 +125,7 @@ def main():
         "use_backgrounds": not args.disable_backgrounds,
         "restrict_themes": args.restrict_themes,
         "use_monochrome_assets": args.use_monochrome_assets,
+        "random_percent": args.random_percent,
     }
     
     if args.env_name != "coinrun_old":
