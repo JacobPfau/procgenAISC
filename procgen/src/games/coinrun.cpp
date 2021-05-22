@@ -45,6 +45,8 @@ class CoinRun : public BasicAbstractGame {
     bool is_on_crate = false;
     float gravity = 0.0f;
     float air_control = 0.0f;
+	int32_t reached_end = 0;
+	int curr_x;
 
     CoinRun()
         : BasicAbstractGame(NAME) {
@@ -263,11 +265,12 @@ class CoinRun : public BasicAbstractGame {
     }
 
     void generate_coin_to_the_right() {
+		reached_end = 0;
         int max_difficulty = 3;
         int dif = rand_gen.randn(max_difficulty) + 1;
 
         int num_sections = rand_gen.randn(dif) + dif;
-        int curr_x = 5;
+        curr_x = 5; // changed from int curr_x = 5;
         int curr_y = 1;
 
         int pit_threshold = dif;
@@ -414,11 +417,12 @@ class CoinRun : public BasicAbstractGame {
     }
 
     void generate_coin_to_the_right_rand() {
+		reached_end = 0;
         int max_difficulty = 3;
         int dif = rand_gen.randn(max_difficulty) + 1;
 
         int num_sections = rand_gen.randn(dif) + dif;
-        int curr_x = 5;
+        curr_x = 5; // changed
         int curr_y = 1;
 
         int pit_threshold = dif;
@@ -573,9 +577,7 @@ class CoinRun : public BasicAbstractGame {
             set_obj(curr_x, curr_y, ENEMY_BARRIER);
         }
 
-        // if( coined == false) {
-        //     set_obj(curr_x, curr_y, GOAL); // Changed
-        // }
+//		set_obj(curr_x, curr_y, NON_GOAL);
 
         fill_ground_block(curr_x, 0, 1, curr_y);
         fill_elem(curr_x + 1, 0, main_width - curr_x - 1, main_height, WALL_MID);
@@ -693,6 +695,19 @@ class CoinRun : public BasicAbstractGame {
         gravity = b->read_float();
         air_control = b->read_float();
     }
+
+// add to info dict whether the agent has reached the end of the level
+// 1 if yes else 0
+
+	void observe() override {
+	    Game::observe();
+
+		if (agent->x >= curr_x)
+			reached_end = 1;
+
+	    *(int32_t *)(info_bufs[info_name_to_offset.at("coinrun_reached_end")]) = reached_end;
+	}
+
 };
 
 REGISTER_GAME(NAME, CoinRun);

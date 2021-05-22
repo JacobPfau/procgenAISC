@@ -283,6 +283,22 @@ VecGame::VecGame(int _nenvs, VecOptions opts) {
         info_types.push_back(s);
     }
 
+// Added to track coinrun metrics.
+
+// Using libenv discrete scalar (!?) bc that was
+// what the readme example used, even tho
+// bool would be more appropriate
+	{
+	    struct libenv_tensortype s;
+	    strcpy(s.name, "coinrun_reached_end");
+	    s.scalar_type = LIBENV_SCALAR_TYPE_DISCRETE;
+	    s.dtype = LIBENV_DTYPE_INT32;
+	    s.ndim = 0,
+	    s.low.int32 = 0;
+	    s.high.int32 = INT32_MAX;
+	    info_types.push_back(s);
+	}
+
     int level_seed_low = 0;
     int level_seed_high = 0;
 

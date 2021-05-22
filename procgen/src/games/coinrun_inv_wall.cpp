@@ -7,7 +7,6 @@
 #include "../qt-utils.h"
 
 const std::string NAME = "coinrun_inv_wall";
-int curr_x;
 
 const float GOAL_REWARD = 10.0f;
 
@@ -46,6 +45,7 @@ class CoinRunInvWall : public BasicAbstractGame {
     bool is_on_crate = false;
     float gravity = 0.0f;
     float air_control = 0.0f;
+	int curr_x;
 
     CoinRunInvWall()
         : BasicAbstractGame(NAME) {

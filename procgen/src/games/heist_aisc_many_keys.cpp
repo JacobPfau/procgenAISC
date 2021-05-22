@@ -185,7 +185,7 @@ class HeistGameAISC_ManyKeys : public BasicAbstractGame {
         options.center_agent = options.distribution_mode == MemoryMode;
 
         if (options.distribution_mode == MemoryMode) {
-            env_chests = rand_gen.randn(4);
+            env_chests = rand_gen.randn(4) + 1;
             num_keys = env_chests*2;
         } else {
             env_chests = difficulty + rand_gen.randn(2) + 1;
