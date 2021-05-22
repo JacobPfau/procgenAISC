@@ -265,7 +265,6 @@ class CoinRun : public BasicAbstractGame {
     }
 
     void generate_coin_to_the_right() {
-		reached_end = 0;
         int max_difficulty = 3;
         int dif = rand_gen.randn(max_difficulty) + 1;
 
@@ -417,7 +416,6 @@ class CoinRun : public BasicAbstractGame {
     }
 
     void generate_coin_to_the_right_rand() {
-		reached_end = 0;
         int max_difficulty = 3;
         int dif = rand_gen.randn(max_difficulty) + 1;
 
@@ -592,6 +590,7 @@ class CoinRun : public BasicAbstractGame {
         maxspeed = .5;
         has_support = false;
         facing_right = true;
+		reached_end = 0;
 
         if (options.distribution_mode == EasyMode) {
             agent->image_theme = 0;
