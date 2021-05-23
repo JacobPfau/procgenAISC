@@ -32,7 +32,7 @@ class MazeGameAISC : public BasicAbstractGame {
         if (type == WALL_OBJ) {
             names.push_back("kenney/Ground/Sand/sandCenter.png");
         } else if (type == GOAL) {
-            names.push_back("misc_assets/cheese.png");
+            names.push_back("kenney/Items/gemYellow.png");
         } else if (type == PLAYER) {
             names.push_back("kenney/Enemies/mouse_move.png");
         }
@@ -72,9 +72,9 @@ class MazeGameAISC : public BasicAbstractGame {
         agent->y = margin + .5;
 
         maze_gen_aisc->generate_maze();
-        maze_gen_aisc-> deterministic_place(GOAL, false);
+        // maze_gen_aisc-> deterministic_place(GOAL, false);
         // maze_gen_aisc-> deterministic_place(ARROW, true);
-        // maze_gen_aisc->place_objects(GOAL, 1);
+        maze_gen_aisc->place_objects(GOAL, 1);
 
         for (int i = 0; i < grid_size; i++) {
             set_obj(i, WALL_OBJ);

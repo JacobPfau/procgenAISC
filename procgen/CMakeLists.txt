@@ -61,6 +61,8 @@ add_library(env
   src/games/leaper.cpp
   src/games/maze.cpp
   src/games/maze_aisc.cpp
+  src/games/maze_star.cpp
+  src/games/maze_gemred.cpp
   src/games/miner.cpp
   src/games/ninja.cpp
   src/games/chaser.cpp

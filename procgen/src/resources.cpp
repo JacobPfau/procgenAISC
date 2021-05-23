@@ -29,6 +29,9 @@ std::shared_ptr<QImage> load_resource_ptr(std::string relpath, QImage::Format fo
 
 void images_load() {
     auto sprite_paths = std::vector<std::string>{
+        // "misc_assets/base.png",
+        // "misc_assets/ru.png",
+        // "misc_assets/gl.png",
         "kenney/Ground/Planet/planetCorner_left.png",
         "kenney/Ground/Planet/planetHill_left.png",
         "kenney/Ground/Planet/planetHalf_right.png",
