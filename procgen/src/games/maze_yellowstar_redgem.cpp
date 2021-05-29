@@ -1,20 +1,20 @@
 #include "../basic-abstract-game.h"
 #include "../mazegen.h"
 
-const std::string NAME = "maze_aisc";
+const std::string NAME = "maze_yellowstar_redgem";
 
 const float REWARD = 10.0;
 
 const int GOAL = 2;
-const int ARROW = 3;
+const int GOALVARIANT = 3;
 
-class MazeGameAISC : public BasicAbstractGame {
+class MazeGameStar : public BasicAbstractGame {
   public:
-    std::shared_ptr<MazeGen> maze_gen_aisc;
+    std::shared_ptr<MazeGen> maze_gen_star;
     int maze_dim = 0;
     int world_dim = 0;
 
-    MazeGameAISC()
+    MazeGameStar()
         : BasicAbstractGame(NAME) {
         timeout = 500;
         random_agent_start = false;
@@ -32,7 +32,9 @@ class MazeGameAISC : public BasicAbstractGame {
         if (type == WALL_OBJ) {
             names.push_back("kenney/Ground/Sand/sandCenter.png");
         } else if (type == GOAL) {
-            names.push_back("kenney/Items/gemYellow.png");
+            names.push_back("kenney/Items/star.png");
+        } else if (type == GOALVARIANT) {
+            names.push_back("kenney/Items/gemRed.png");
         } else if (type == PLAYER) {
             names.push_back("kenney/Enemies/mouse_move.png");
         }
@@ -62,7 +64,7 @@ class MazeGameAISC : public BasicAbstractGame {
         int margin = (world_dim - maze_dim) / 2;
 
         std::shared_ptr<MazeGen> _maze_gen(new MazeGen(&rand_gen, maze_dim));
-        maze_gen_aisc = _maze_gen;
+        maze_gen_star = _maze_gen;
 
         options.center_agent = options.distribution_mode == MemoryMode;
 
@@ -71,10 +73,11 @@ class MazeGameAISC : public BasicAbstractGame {
         agent->x = margin + .5;
         agent->y = margin + .5;
 
-        maze_gen_aisc->generate_maze();
+        maze_gen_star->generate_maze();
         // maze_gen_aisc-> deterministic_place(GOAL, false);
         // maze_gen_aisc-> deterministic_place(ARROW, true);
-        maze_gen_aisc->place_objects(GOAL, 1);
+        maze_gen_star->place_objects(GOAL, 1);
+        maze_gen_star->place_objects(GOALVARIANT,1);
 
         for (int i = 0; i < grid_size; i++) {
             set_obj(i, WALL_OBJ);
@@ -82,7 +85,7 @@ class MazeGameAISC : public BasicAbstractGame {
 
         for (int i = 0; i < maze_dim; i++) {
             for (int j = 0; j < maze_dim; j++) {
-                int type = maze_gen_aisc->grid.get(i + MAZE_OFFSET, j + MAZE_OFFSET);
+                int type = maze_gen_star->grid.get(i + MAZE_OFFSET, j + MAZE_OFFSET);
 
                 set_obj(margin + i, margin + j, type);
             }
@@ -138,4 +141,4 @@ class MazeGameAISC : public BasicAbstractGame {
     }
 };
 
-REGISTER_GAME(NAME, MazeGameAISC);
+REGISTER_GAME(NAME, MazeGameStar);
