@@ -1,9 +1,22 @@
-# AISC 
-### Coinrun branch
-coinrun.cpp now has coin in a random location
+# Objective Robustness in Procgen
 
-### Maze branch
-Maze has the cheese in a deterministic place and a marker next to it.
+This is a fork of the procgen benchmark that implements modifications for the paper Objective Robustness in Deep Reinforcement Learning [insert arxiv link here].
+
+## Descriptions of the modified environments
+
+* `coinrun_aisc`: Like `coinrun`, but the coin is placed randomly on ground level instead of at the far right end.
+* `coinrun`: Added a flag `--random_percent`, which places the coin randomly in a given percentage of environments. Default 0.
+* `heist_aisc_many_chests`: A heavily modified `heist`. Doors are now 'chests' (they do not prevent the agent from passing). Every key can open every chest. The agent is rewarded for opening chests. This version generates twice as many chests as keys.
+* `heist_aisc_many_keys`: Same as `heist_aisc_many_chests`, but instead has twice as many keys as chests.
+* `maze_aisc`: Like maze, but the cheese is always to be found in the top right corner.
+* `maze_yellowgem`: like maze, but the goal is a yellow gem.
+* `maze_redgem_yellowstar`: like maze, but two objects are placed in the maze: a red gem, and a yellow star. The objective is the red gem.
+* `maze_yellowstar_redgem`: Identical to `maze_yellowstar_redgem`, but the objective is instead the yellow star.
+
+The original README is reproduced below.
+
+---
+
 # Procgen Benchmark
 
 #### [[Blog Post]](https://openai.com/blog/procgen-benchmark/) [[Paper]](https://arxiv.org/abs/1912.01588)
