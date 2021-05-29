@@ -60,6 +60,7 @@ add_library(env
   src/games/jumper.cpp
   src/games/leaper.cpp
   src/games/maze.cpp
+  src/games/maze_aisc.cpp
   src/games/maze_yellowgem.cpp
   src/games/maze_yellowstar_redgem.cpp
   src/games/maze_redgem_yellowstar.cpp
