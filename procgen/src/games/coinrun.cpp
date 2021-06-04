@@ -611,7 +611,7 @@ class CoinRun : public BasicAbstractGame {
 
         init_floor_and_walls();
         int rand_check = rand_gen.randn(100);
-        if (rand_check>options.random_percent){
+        if (rand_check>=options.random_percent){
             generate_coin_to_the_right();
         }
         else {
