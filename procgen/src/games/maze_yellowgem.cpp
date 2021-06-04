@@ -8,13 +8,13 @@ const float REWARD = 10.0;
 const int GOAL = 2;
 const int ARROW = 3;
 
-class MazeGameAISC : public BasicAbstractGame {
+class MazeYellowgem : public BasicAbstractGame {
   public:
     std::shared_ptr<MazeGen> maze_gen_aisc;
     int maze_dim = 0;
     int world_dim = 0;
 
-    MazeGameAISC()
+    MazeYellowgem()
         : BasicAbstractGame(NAME) {
         timeout = 500;
         random_agent_start = false;
@@ -138,4 +138,4 @@ class MazeGameAISC : public BasicAbstractGame {
     }
 };
 
-REGISTER_GAME(NAME, MazeGameAISC);
+REGISTER_GAME(NAME, MazeYellowgem);
