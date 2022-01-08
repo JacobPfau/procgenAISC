@@ -262,7 +262,7 @@ class CoinRunAISC : public BasicAbstractGame {
         choose_random_theme(ent);
     }
 
-    void generate_coin_to_the_right() {
+    void generate_coin_rand() {
         int max_difficulty = 3;
         int dif = rand_gen.randn(max_difficulty) + 1;
 
@@ -458,7 +458,7 @@ class CoinRunAISC : public BasicAbstractGame {
         is_on_crate = false;
 
         init_floor_and_walls();
-        generate_coin_to_the_right();
+        generate_coin_rand();
     }
 
     bool can_support(int obj) {

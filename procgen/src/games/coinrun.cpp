@@ -269,7 +269,7 @@ class CoinRun : public BasicAbstractGame {
         int dif = rand_gen.randn(max_difficulty) + 1;
 
         int num_sections = rand_gen.randn(dif) + dif;
-        curr_x = 5; // changed from int curr_x = 5;
+        curr_x = 5; // changed from int curr_x = 5, since we're initializing curr_x outside this fn.
         int curr_y = 1;
 
         int pit_threshold = dif;
@@ -415,7 +415,7 @@ class CoinRun : public BasicAbstractGame {
         fill_elem(curr_x + 1, 0, main_width - curr_x - 1, main_height, WALL_MID);
     }
 
-    void generate_coin_to_the_right_rand() {
+    void generate_coin_rand() {
         int max_difficulty = 3;
         int dif = rand_gen.randn(max_difficulty) + 1;
 
@@ -615,7 +615,7 @@ class CoinRun : public BasicAbstractGame {
             generate_coin_to_the_right();
         }
         else {
-            generate_coin_to_the_right_rand();
+            generate_coin_rand();
         }
         
     }
