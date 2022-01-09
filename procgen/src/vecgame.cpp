@@ -290,7 +290,7 @@ VecGame::VecGame(int _nenvs, VecOptions opts) {
 // bool would be more appropriate
 	{
 	    struct libenv_tensortype s;
-	    strcpy(s.name, "coinrun_reached_end");
+	    strcpy(s.name, "coinrun_invisible_coin_collected");
 	    s.scalar_type = LIBENV_SCALAR_TYPE_DISCRETE;
 	    s.dtype = LIBENV_DTYPE_INT32;
 	    s.ndim = 0,
