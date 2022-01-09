@@ -48,6 +48,7 @@ class CoinRun : public BasicAbstractGame {
     float gravity = 0.0f;
     float air_control = 0.0f;
     bool invisible_coin_collected = false;
+    bool randomize_goal = false;  // whether to randomize coin position
 
     CoinRun()
         : BasicAbstractGame(NAME) {
@@ -469,7 +470,7 @@ class CoinRun : public BasicAbstractGame {
 
         init_floor_and_walls();
         int rand_check = rand_gen.randn(100);
-        bool randomize_goal = (rand_check < options.random_percent);
+        randomize_goal = (rand_check < options.random_percent);
         generate_coin(randomize_goal);
     }
 
@@ -554,6 +555,7 @@ class CoinRun : public BasicAbstractGame {
 	void observe() override {
 	    Game::observe();
 	    *(int32_t *)(info_bufs[info_name_to_offset.at("coinrun_invisible_coin_collected")]) = invisible_coin_collected;
+	    *(int32_t *)(info_bufs[info_name_to_offset.at("randomize_goal")]) = randomize_goal;
 	}
 
 };

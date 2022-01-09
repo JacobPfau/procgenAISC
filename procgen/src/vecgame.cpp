@@ -299,6 +299,17 @@ VecGame::VecGame(int _nenvs, VecOptions opts) {
 	    info_types.push_back(s);
 	}
 
+	{
+	    struct libenv_tensortype s;
+	    strcpy(s.name, "randomize_goal");
+	    s.scalar_type = LIBENV_SCALAR_TYPE_DISCRETE;
+	    s.dtype = LIBENV_DTYPE_INT32;
+	    s.ndim = 0,
+	    s.low.int32 = 0;
+	    s.high.int32 = INT32_MAX;
+	    info_types.push_back(s);
+	}
+
     int level_seed_low = 0;
     int level_seed_high = 0;
 
