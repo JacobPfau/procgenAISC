@@ -48,7 +48,9 @@ class CoinRun : public BasicAbstractGame {
     float gravity = 0.0f;
     float air_control = 0.0f;
     bool invisible_coin_collected = false;
+    bool prev_level_invisible_coin_collected = false;
     bool randomize_goal = false;  // whether to randomize coin position
+    bool prev_level_randomize_goal = false;
 
     CoinRun()
         : BasicAbstractGame(NAME) {
@@ -449,6 +451,9 @@ class CoinRun : public BasicAbstractGame {
         maxspeed = .5;
         has_support = false;
         facing_right = true;
+
+        prev_level_invisible_coin_collected = invisible_coin_collected;
+        prev_level_randomize_goal = randomize_goal;
         invisible_coin_collected = false;
 
         if (options.distribution_mode == EasyMode) {
@@ -554,8 +559,10 @@ class CoinRun : public BasicAbstractGame {
 
 	void observe() override {
 	    Game::observe();
-	    *(int32_t *)(info_bufs[info_name_to_offset.at("coinrun_invisible_coin_collected")]) = invisible_coin_collected;
+	    *(int32_t *)(info_bufs[info_name_to_offset.at("invisible_coin_collected")]) = invisible_coin_collected;
+	    *(int32_t *)(info_bufs[info_name_to_offset.at("prev_level/invisible_coin_collected")]) = prev_level_invisible_coin_collected;
 	    *(int32_t *)(info_bufs[info_name_to_offset.at("randomize_goal")]) = randomize_goal;
+	    *(int32_t *)(info_bufs[info_name_to_offset.at("prev_level/randomize_goal")]) = prev_level_randomize_goal;
 	}
 
 };

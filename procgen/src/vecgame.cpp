@@ -290,7 +290,18 @@ VecGame::VecGame(int _nenvs, VecOptions opts) {
 // bool would be more appropriate
 	{
 	    struct libenv_tensortype s;
-	    strcpy(s.name, "coinrun_invisible_coin_collected");
+	    strcpy(s.name, "invisible_coin_collected");
+	    s.scalar_type = LIBENV_SCALAR_TYPE_DISCRETE;
+	    s.dtype = LIBENV_DTYPE_INT32;
+	    s.ndim = 0,
+	    s.low.int32 = 0;
+	    s.high.int32 = INT32_MAX;
+	    info_types.push_back(s);
+	}
+
+	{
+	    struct libenv_tensortype s;
+	    strcpy(s.name, "prev_level/invisible_coin_collected");
 	    s.scalar_type = LIBENV_SCALAR_TYPE_DISCRETE;
 	    s.dtype = LIBENV_DTYPE_INT32;
 	    s.ndim = 0,
@@ -302,6 +313,17 @@ VecGame::VecGame(int _nenvs, VecOptions opts) {
 	{
 	    struct libenv_tensortype s;
 	    strcpy(s.name, "randomize_goal");
+	    s.scalar_type = LIBENV_SCALAR_TYPE_DISCRETE;
+	    s.dtype = LIBENV_DTYPE_INT32;
+	    s.ndim = 0,
+	    s.low.int32 = 0;
+	    s.high.int32 = INT32_MAX;
+	    info_types.push_back(s);
+	}
+
+	{
+	    struct libenv_tensortype s;
+	    strcpy(s.name, "prev_level/randomize_goal");
 	    s.scalar_type = LIBENV_SCALAR_TYPE_DISCRETE;
 	    s.dtype = LIBENV_DTYPE_INT32;
 	    s.ndim = 0,
