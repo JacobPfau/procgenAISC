@@ -48,7 +48,10 @@ void Game::parse_options(std::string name, VecOptions opts) {
     opts.consume_bool("use_backgrounds", &options.use_backgrounds);
     opts.consume_bool("center_agent", &options.center_agent);
     opts.consume_bool("use_sequential_levels", &options.use_sequential_levels);
+
     opts.consume_int("random_percent", &options.random_percent); // changed
+    opts.consume_int("key_penalty", &options.key_penalty); // changed
+    opts.consume_int("step_penalty", &options.step_penalty); // changed
 
     int dist_mode = EasyMode;
     opts.consume_int("distribution_mode", &dist_mode);
@@ -182,8 +185,11 @@ void Game::serialize(WriteBuffer *b) {
     b->write_int(options.center_agent);
     b->write_int(options.debug_mode);
     b->write_int(options.distribution_mode);
-    b->write_int(options.random_percent); // changed
     b->write_int(options.use_sequential_levels);
+
+    b->write_int(options.random_percent); // changed
+    b->write_int(options.key_penalty); // changed
+    b->write_int(options.step_penalty); // changed
 
     b->write_int(options.use_easy_jump);
     b->write_int(options.plain_assets);
@@ -243,8 +249,11 @@ void Game::deserialize(ReadBuffer *b) {
     options.center_agent = b->read_int();
     options.debug_mode = b->read_int();
     options.distribution_mode = DistributionMode(b->read_int());
-    options.random_percent = b->read_int();  // changed
     options.use_sequential_levels = b->read_int();
+
+    options.random_percent = b->read_int();  // changed
+    options.key_penalty = b->read_int();  // changed
+    options.step_penalty = b->read_int();  // changed
 
     options.use_easy_jump = b->read_int();
     options.plain_assets = b->read_int();

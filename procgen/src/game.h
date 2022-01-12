@@ -50,9 +50,13 @@ struct GameOptions {
     bool use_backgrounds = true;
     bool center_agent = false;
     int debug_mode = 0;
-    int random_percent = 100;
     DistributionMode distribution_mode = HardMode;
     bool use_sequential_levels = false;
+
+    // added
+    int random_percent = 0;
+    int key_penalty = 0;
+    int step_penalty = 0;
 
     // coinrun_old
     bool use_easy_jump = false;

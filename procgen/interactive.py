@@ -80,6 +80,18 @@ def main():
         help="How often to randomize the level construction",
     )
     advanced_group.add_argument(
+        "--key-penalty",
+        default=0,
+        type=int,
+        help="Penalty for picking up keys (divided by 10)",
+    )
+    advanced_group.add_argument(
+        "--step-penalty",
+        default=0,
+        type=int,
+        help="Time penalty per step (divided by 1000)",
+    )
+    advanced_group.add_argument(
         "--paint-vel-info",
         action="store_true",
         default=False,
@@ -126,6 +138,8 @@ def main():
         "restrict_themes": args.restrict_themes,
         "use_monochrome_assets": args.use_monochrome_assets,
         "random_percent": args.random_percent,
+        "key_penalty": args.key_penalty,
+        "step_penalty": args.step_penalty,
     }
     
     if args.env_name != "coinrun_old":

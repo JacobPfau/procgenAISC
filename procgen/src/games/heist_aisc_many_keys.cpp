@@ -137,6 +137,7 @@ class HeistGameAISC_ManyKeys : public BasicAbstractGame {
         if (obj->type == KEY) {
             obj->will_erase = true;
             // has_keys[obj->image_theme] = true;
+            step_data.reward -= options.key_penalty / 10.;  // small penalty for collecting key
             agent_keys += 1;
         } else if (obj->type == LOCKED_DOOR) {
             if (agent_keys>0){
@@ -270,6 +271,7 @@ class HeistGameAISC_ManyKeys : public BasicAbstractGame {
     void game_step() override {
         BasicAbstractGame::game_step();
 
+        step_data.reward -= options.step_penalty / 1000.;  // time penalty
         agent->face_direction(action_vx, action_vy);
     }
 

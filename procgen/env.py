@@ -234,6 +234,8 @@ class ProcgenGym3Env(BaseProcgenEnv):
         paint_vel_info=False,
         distribution_mode="hard",
         random_percent=0,
+        key_penalty=0,
+        step_penalty=0,
         **kwargs,
     ):
         assert (
@@ -262,6 +264,8 @@ class ProcgenGym3Env(BaseProcgenEnv):
                 "paint_vel_info": bool(paint_vel_info),
                 "distribution_mode": distribution_mode,
                 "random_percent": int(random_percent),
+                "key_penalty": int(key_penalty),
+                "step_penalty": int(step_penalty),
             }
         super().__init__(num, env_name, options, **kwargs)
 

@@ -10,12 +10,17 @@ Code to reproduce the results from the paper is [available from this repository]
 
 * `coinrun_aisc`: Like `coinrun`, but the coin is placed randomly on ground level instead of at the far right end.
 * `coinrun`: Added a flag `--random_percent`, which places the coin randomly in a given percentage of environments. Default 0.
-* `heist_aisc_many_chests`: A heavily modified `heist`. Doors are now 'chests' (they do not prevent the agent from passing). Every key can open every chest. The agent is rewarded for opening chests. This version generates twice as many chests as keys.
+* `heist_aisc_many_chests`: A heavily modified `heist`. Doors are now 'chests' (they do not prevent the agent from passing). Every key can open every chest. The agent is rewarded for opening chests. This version generates twice as many chests as keys. 
 * `heist_aisc_many_keys`: Same as `heist_aisc_many_chests`, but instead has twice as many keys as chests.
 * `maze_aisc`: Like maze, but the cheese is always to be found in the top right corner.
 * `maze_yellowgem`: like maze, but the goal is a yellow gem.
 * `maze_redgem_yellowstar`: like maze, but two objects are placed in the maze: a red gem, and a yellow star. The objective is the red gem.
 * `maze_yellowstar_redgem`: Identical to `maze_yellowstar_redgem`, but the objective is instead the yellow star.
+
+
+For both 'Keys and Chests' environments we added two options:
+* `--key_penalty`: integer. Every time the agent picks up a key it loses `options.key_penalty / 10` reward.
+* `--step_penalty`: integer time penalty. Each step, `options.step_penalty / 1000` is subtracted from the reward.
 
 For more information on the standard environments see the original repository.
 
