@@ -51,6 +51,7 @@ class CoinRun : public BasicAbstractGame {
     bool prev_level_invisible_coin_collected = false;
     bool randomize_goal = false;  // whether to randomize coin position
     bool prev_level_randomize_goal = false;
+    int prev_level_total_steps = 0;
 
     CoinRun()
         : BasicAbstractGame(NAME) {
@@ -454,6 +455,7 @@ class CoinRun : public BasicAbstractGame {
 
         prev_level_invisible_coin_collected = invisible_coin_collected;
         prev_level_randomize_goal = randomize_goal;
+        prev_level_total_steps = cur_time;
         invisible_coin_collected = false;
 
         if (options.distribution_mode == EasyMode) {
@@ -563,6 +565,8 @@ class CoinRun : public BasicAbstractGame {
 	    *(int32_t *)(info_bufs[info_name_to_offset.at("prev_level/invisible_coin_collected")]) = prev_level_invisible_coin_collected;
 	    *(int32_t *)(info_bufs[info_name_to_offset.at("randomize_goal")]) = randomize_goal;
 	    *(int32_t *)(info_bufs[info_name_to_offset.at("prev_level/randomize_goal")]) = prev_level_randomize_goal;
+	    *(int32_t *)(info_bufs[info_name_to_offset.at("prev_level/total_steps")]) = prev_level_total_steps;
+	    *(int32_t *)(info_bufs[info_name_to_offset.at("total_steps")]) = cur_time;
 	}
 
 };
