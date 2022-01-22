@@ -47,6 +47,7 @@ class CoinRun : public BasicAbstractGame {
     bool is_on_crate = false;
     float gravity = 0.0f;
     float air_control = 0.0f;
+
     bool invisible_coin_collected = false;
     bool prev_level_invisible_coin_collected = false;
     bool randomize_goal = false;  // whether to randomize coin position
@@ -272,16 +273,16 @@ class CoinRun : public BasicAbstractGame {
     }
 
     void generate_coin(bool randomize_goal) {
-        int RAND_COIN = 6;
-        int FIXED_COIN = 7;
+        int RAND_COIN;
+        int FIXED_COIN;
 
-		if (randomize_goal) {
-			RAND_COIN = GOAL;
-			FIXED_COIN = INVISIBLE_GOAL;
-		} else {
-			RAND_COIN = INVISIBLE_GOAL;
-			FIXED_COIN = GOAL;
-		}
+        if (randomize_goal) {
+            RAND_COIN = GOAL;
+            FIXED_COIN = INVISIBLE_GOAL;
+        } else {
+            RAND_COIN = INVISIBLE_GOAL;
+            FIXED_COIN = GOAL;
+        }
 
         int max_difficulty = 3;
         int dif = rand_gen.randn(max_difficulty) + 1;
@@ -311,8 +312,8 @@ class CoinRun : public BasicAbstractGame {
             allow_monsters = false;
         }
 
-		bool coined = false;
-		int random_coin_position = rand_gen.randn(num_sections);
+        bool coined = false;
+        int random_coin_position = rand_gen.randn(num_sections);
 
         for (int section_idx = 0; section_idx < num_sections; section_idx++) {
             if (curr_x + 15 >= w) {
@@ -556,18 +557,16 @@ class CoinRun : public BasicAbstractGame {
         air_control = b->read_float();
     }
 
-// add to info dict whether the agent has reached the end of the level
-// 1 if yes else 0
-
-	void observe() override {
-	    Game::observe();
-	    *(int32_t *)(info_bufs[info_name_to_offset.at("invisible_coin_collected")]) = invisible_coin_collected;
-	    *(int32_t *)(info_bufs[info_name_to_offset.at("prev_level/invisible_coin_collected")]) = prev_level_invisible_coin_collected;
-	    *(int32_t *)(info_bufs[info_name_to_offset.at("randomize_goal")]) = randomize_goal;
-	    *(int32_t *)(info_bufs[info_name_to_offset.at("prev_level/randomize_goal")]) = prev_level_randomize_goal;
-	    *(int32_t *)(info_bufs[info_name_to_offset.at("prev_level/total_steps")]) = prev_level_total_steps;
-	    *(int32_t *)(info_bufs[info_name_to_offset.at("total_steps")]) = cur_time;
-	}
+    // info dict
+    void observe() override {
+        Game::observe();
+        *(int32_t *)(info_bufs[info_name_to_offset.at("invisible_coin_collected")]) = invisible_coin_collected;
+        *(int32_t *)(info_bufs[info_name_to_offset.at("prev_level/invisible_coin_collected")]) = prev_level_invisible_coin_collected;
+        *(int32_t *)(info_bufs[info_name_to_offset.at("randomize_goal")]) = randomize_goal;
+        *(int32_t *)(info_bufs[info_name_to_offset.at("prev_level/randomize_goal")]) = prev_level_randomize_goal;
+        *(int32_t *)(info_bufs[info_name_to_offset.at("prev_level/total_steps")]) = prev_level_total_steps;
+        *(int32_t *)(info_bufs[info_name_to_offset.at("total_steps")]) = cur_time;
+    }
 
 };
 

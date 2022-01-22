@@ -10,6 +10,8 @@ const std::string NAME = "coinrun_aisc";
 
 const float GOAL_REWARD = 10.0f;
 
+const int INVISIBLE_GOAL = -1; 
+
 const int GOAL = 1;
 const int SAW = 2;
 const int SAW2 = 3;
@@ -45,6 +47,12 @@ class CoinRunAISC : public BasicAbstractGame {
     bool is_on_crate = false;
     float gravity = 0.0f;
     float air_control = 0.0f;
+
+    bool invisible_coin_collected = false;
+    bool prev_level_invisible_coin_collected = false;
+    bool randomize_goal = true;  // whether to randomize coin position. always true.
+    bool prev_level_randomize_goal = true; // similar
+    int prev_level_total_steps = 0;
 
     CoinRunAISC()
         : BasicAbstractGame(NAME) {
@@ -149,6 +157,8 @@ class CoinRunAISC : public BasicAbstractGame {
                 step_data.level_complete = true;
             } else if (is_lava(type)) {
                 step_data.done = true;
+            } else if (type == INVISIBLE_GOAL) {
+                invisible_coin_collected = true;
             }
         }
     }
@@ -291,8 +301,8 @@ class CoinRunAISC : public BasicAbstractGame {
             allow_monsters = false;
         }
 
-        bool coined = false; // Changed
-        int coin_gen = rand_gen.randn(num_sections); // Changed
+        bool coined = false;
+        int random_coin_position = rand_gen.randn(num_sections);
         
 
         for (int section_idx = 0; section_idx < num_sections; section_idx++) {
@@ -324,16 +334,12 @@ class CoinRunAISC : public BasicAbstractGame {
                 curr_y = 1;
             }
 
-            if (section_idx == coin_gen){
+            if (section_idx == random_coin_position){
                 if (coined == false){
-                    set_obj(curr_x, curr_y, GOAL);// Changed
+                    set_obj(curr_x, curr_y, GOAL);
                     coined = true;
                 }
             }
-            // if (curr_x == coin_loc) {
-            //     set_obj(curr_x, curr_y, GOAL);// Changed
-            //     coined = true;
-            // }
 
             bool use_pit = allow_pit && (dx > 7) && (curr_y > 3) && (rand_gen.randn(20) >= pit_threshold);
 
@@ -422,9 +428,7 @@ class CoinRunAISC : public BasicAbstractGame {
             set_obj(curr_x, curr_y, ENEMY_BARRIER);
         }
 
-        // if( coined == false) {
-        //     set_obj(curr_x, curr_y, GOAL); // Changed
-        // }
+        set_obj(curr_x, curr_y, INVISIBLE_GOAL);
 
         fill_ground_block(curr_x, 0, 1, curr_y);
         fill_elem(curr_x + 1, 0, main_width - curr_x - 1, main_height, WALL_MID);
@@ -439,6 +443,10 @@ class CoinRunAISC : public BasicAbstractGame {
         maxspeed = .5;
         has_support = false;
         facing_right = true;
+
+        prev_level_invisible_coin_collected = invisible_coin_collected;
+        prev_level_total_steps = cur_time;
+        invisible_coin_collected = false;
 
         if (options.distribution_mode == EasyMode) {
             agent->image_theme = 0;
@@ -534,6 +542,17 @@ class CoinRunAISC : public BasicAbstractGame {
         is_on_crate = b->read_bool();
         gravity = b->read_float();
         air_control = b->read_float();
+    }
+
+    // info dict
+    void observe() override {
+        Game::observe();
+        *(int32_t *)(info_bufs[info_name_to_offset.at("invisible_coin_collected")]) = invisible_coin_collected;
+        *(int32_t *)(info_bufs[info_name_to_offset.at("prev_level/invisible_coin_collected")]) = prev_level_invisible_coin_collected;
+        *(int32_t *)(info_bufs[info_name_to_offset.at("randomize_goal")]) = randomize_goal;
+        *(int32_t *)(info_bufs[info_name_to_offset.at("prev_level/randomize_goal")]) = prev_level_randomize_goal;
+        *(int32_t *)(info_bufs[info_name_to_offset.at("prev_level/total_steps")]) = prev_level_total_steps;
+        *(int32_t *)(info_bufs[info_name_to_offset.at("total_steps")]) = cur_time;
     }
 };
 
