@@ -74,6 +74,12 @@ def main():
 
     advanced_group = parser.add_argument_group("advanced optional switch arguments")
     advanced_group.add_argument(
+        "--rand-region",
+        default=0,
+        type=int,
+        help="Size of area to randomize cheese location over",
+    )
+    advanced_group.add_argument(
         "--random-percent",
         default=0,
         type=int,
@@ -138,6 +144,7 @@ def main():
         "restrict_themes": args.restrict_themes,
         "use_monochrome_assets": args.use_monochrome_assets,
         "random_percent": args.random_percent,
+        "rand_region": args.rand_region,
         "key_penalty": args.key_penalty,
         "step_penalty": args.step_penalty,
     }

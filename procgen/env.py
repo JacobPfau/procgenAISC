@@ -236,6 +236,7 @@ class ProcgenGym3Env(BaseProcgenEnv):
         random_percent=0,
         key_penalty=0,
         step_penalty=0,
+        rand_region=0,
         **kwargs,
     ):
         assert (
@@ -266,6 +267,7 @@ class ProcgenGym3Env(BaseProcgenEnv):
                 "random_percent": int(random_percent),
                 "key_penalty": int(key_penalty),
                 "step_penalty": int(step_penalty),
+                "rand_region": int(rand_region)
             }
         super().__init__(num, env_name, options, **kwargs)
 

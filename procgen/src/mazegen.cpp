@@ -342,9 +342,16 @@ void MazeGen::generate_maze_with_doors_aisc(int num_doors, int num_keys) {
 
 }
 
-void MazeGen::deterministic_place(int start_obj, bool arrow) {
+void MazeGen::deterministic_place(int start_obj, bool arrow, int rand_region) {
     if (!arrow){
-        grid.set(maze_dim+MAZE_OFFSET-1, maze_dim+MAZE_OFFSET-1, start_obj);
+        if (rand_region > 0){
+            int rand_x = rand_gen->randn(rand_region);
+            int rand_y = rand_gen->randn(rand_region);
+            grid.set(maze_dim+MAZE_OFFSET-1-rand_x, maze_dim+MAZE_OFFSET-1-rand_y, start_obj);
+        }
+        else {
+            grid.set(maze_dim+MAZE_OFFSET-1, maze_dim+MAZE_OFFSET-1, start_obj);
+        }
     }
     if (arrow){
         grid.set(maze_dim+MAZE_OFFSET-2, maze_dim+MAZE_OFFSET-2, start_obj);
