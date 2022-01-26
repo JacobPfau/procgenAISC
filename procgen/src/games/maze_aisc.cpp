@@ -73,6 +73,9 @@ class MazeGameAISC : public BasicAbstractGame {
 
         maze_gen_aisc->generate_maze();
         int rand_region = options.rand_region;
+        if (rand_region>maze_dim){
+            rand_region = maze_dim;
+        }
         maze_gen_aisc-> deterministic_place(GOAL, false, rand_region);
         // maze_gen_aisc-> deterministic_place(ARROW, true);
         // maze_gen_aisc->place_objects(GOAL, 1);
