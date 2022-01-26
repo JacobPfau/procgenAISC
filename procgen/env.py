@@ -7,6 +7,11 @@ from gym3.libenv import CEnv
 import numpy as np
 from .build import build
 
+try:
+    from imagecorruptions import corrupt
+except ImportError:
+    pass
+
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 
 MAX_STATE_SIZE = 2 ** 20
@@ -88,7 +93,7 @@ class BaseProcgenEnv(CEnv):
         self,
         num,
         env_name,
-        options,
+        options,  # ranrom_percent and other extra env options can go through here
         debug=False,
         rand_seed=None,
         num_levels=0,
@@ -237,8 +242,12 @@ class ProcgenGym3Env(BaseProcgenEnv):
         key_penalty=0,
         step_penalty=0,
         rand_region=0,
+        corruption_type=None,
+        corruption_severity=1,
         **kwargs,
     ):
+        self.corruption_type = corruption_type
+        self.corruption_severity = corruption_severity
         assert (
             distribution_mode in DISTRIBUTION_MODE_DICT
         ), f'"{distribution_mode}" is not a valid distribution mode.'
@@ -270,6 +279,18 @@ class ProcgenGym3Env(BaseProcgenEnv):
                 "rand_region": int(rand_region)
             }
         super().__init__(num, env_name, options, **kwargs)
+    
+    def observe(self):
+        """override!"""
+        obs = super().observe()
+        if self.corruption_type is not None:
+            rgb = obs[1]["rgb"]
+            rgb = [corrupt(img, severity=self.corruption_severity, corruption_name=self.corruption_type) for img in rgb]
+            rgb = np.array(rgb)
+            obs[1]["rgb"] = rgb
+        return obs
+
+
 
 
 def ProcgenEnv(num_envs, env_name, **kwargs):
