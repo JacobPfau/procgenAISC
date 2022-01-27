@@ -98,6 +98,11 @@ def main():
         help="Time penalty per step (divided by 1000)",
     )
     advanced_group.add_argument(
+        "--continue-after-coin",
+        action="store_true",
+        help="If true, don't end the level when coin is collected",
+    )
+    advanced_group.add_argument(
         "--paint-vel-info",
         action="store_true",
         default=False,
@@ -147,6 +152,7 @@ def main():
         "rand_region": args.rand_region,
         "key_penalty": args.key_penalty,
         "step_penalty": args.step_penalty,
+        "continue_after_coin": args.continue_after_coin,
     }
     
     if args.env_name != "coinrun_old":

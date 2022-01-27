@@ -23,7 +23,7 @@ ENV_NAMES = [
     "chaser",
     "climber",
     "coinrun",
-    "coinrun_inv_wall",
+    "coinrun_mod_wall",
     "coinrun_aisc",
     "dodgeball",
     "fruitbot",
@@ -45,7 +45,7 @@ ENV_NAMES = [
 
 EXPLORATION_LEVEL_SEEDS = {
     "coinrun": 1949448038,
-    "coinrun_inv_wall": 1949448038,
+    "coinrun_mod_wall": 1949448038,
     "coinrun_aisc": 1949448038,
     "caveflyer": 1259048185,
     "leaper": 1318677581,
@@ -103,7 +103,6 @@ class BaseProcgenEnv(CEnv):
         resource_root=None,
         num_threads=4,
         render_mode=None,
-        # random_percent=100,
     ):
         if resource_root is None:
             resource_root = os.path.join(SCRIPT_DIR, "data", "assets") + os.sep
@@ -140,7 +139,6 @@ class BaseProcgenEnv(CEnv):
                 "rand_seed": rand_seed,
                 "num_threads": num_threads,
                 "render_human": render_human,
-                # 'random_percent': random_percent,
                 # these will only be used the first time an environment is created in a process
                 "resource_root": resource_root,
             }
@@ -244,6 +242,7 @@ class ProcgenGym3Env(BaseProcgenEnv):
         rand_region=0,
         corruption_type=None,
         corruption_severity=1,
+        continue_after_coin=False,
         **kwargs,
     ):
         self.corruption_type = corruption_type
@@ -276,7 +275,8 @@ class ProcgenGym3Env(BaseProcgenEnv):
                 "random_percent": int(random_percent),
                 "key_penalty": int(key_penalty),
                 "step_penalty": int(step_penalty),
-                "rand_region": int(rand_region)
+                "rand_region": int(rand_region),
+                "continue_after_coin": bool(continue_after_coin),
             }
         super().__init__(num, env_name, options, **kwargs)
     

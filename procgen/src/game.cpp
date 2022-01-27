@@ -53,6 +53,7 @@ void Game::parse_options(std::string name, VecOptions opts) {
     opts.consume_int("key_penalty", &options.key_penalty); // changed
     opts.consume_int("step_penalty", &options.step_penalty); // changed
     opts.consume_int("rand_region", &options.rand_region); //changed new
+    opts.consume_bool("continue_after_coin", &options.continue_after_coin); //changed new
 
     int dist_mode = EasyMode;
     opts.consume_int("distribution_mode", &dist_mode);
@@ -192,6 +193,7 @@ void Game::serialize(WriteBuffer *b) {
     b->write_int(options.key_penalty); // changed
     b->write_int(options.step_penalty); // changed
     b->write_int(options.rand_region); // changed new
+    b->write_int(options.continue_after_coin); // changed new
 
     b->write_int(options.use_easy_jump);
     b->write_int(options.plain_assets);
@@ -257,6 +259,7 @@ void Game::deserialize(ReadBuffer *b) {
     options.key_penalty = b->read_int();  // changed
     options.step_penalty = b->read_int();  // changed
     options.rand_region = b->read_int(); // changed new
+    options.continue_after_coin = b->read_int(); // changed new
 
     options.use_easy_jump = b->read_int();
     options.plain_assets = b->read_int();

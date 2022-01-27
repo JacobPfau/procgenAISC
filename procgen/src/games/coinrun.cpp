@@ -153,7 +153,7 @@ class CoinRun : public BasicAbstractGame {
         if (obj->type == PLAYER) {
             if (type == GOAL) {
                 step_data.reward += GOAL_REWARD;
-                step_data.done = true;
+                step_data.done = !options.continue_after_coin;
                 step_data.level_complete = true;
             } else if (is_lava(type)) {
                 step_data.done = true;

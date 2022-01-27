@@ -6,9 +6,12 @@
 #include "../cpp-utils.h"
 #include "../qt-utils.h"
 
-const std::string NAME = "coinrun_inv_wall";
+const std::string NAME = "coinrun_mod_wall";
 
 const float GOAL_REWARD = 10.0f;
+
+const int INVISIBLE_GOAL = -1;
+const int MOD_WALL = -15;
 
 const int GOAL = 1;
 const int SAW = 2;
@@ -35,7 +38,7 @@ std::vector<std::string> GROUND_THEMES_AISC2 = {"Dirt", "Grass", "Planet", "Sand
 
 const int NUM_GROUND_THEMES_AISC2 = (int)(GROUND_THEMES_AISC2.size());
 
-class CoinRunInvWall : public BasicAbstractGame {
+class CoinRunModWall : public BasicAbstractGame {
   public:
     std::shared_ptr<Entity> goal;
     float last_agent_y = 0.0f;
@@ -45,9 +48,14 @@ class CoinRunInvWall : public BasicAbstractGame {
     bool is_on_crate = false;
     float gravity = 0.0f;
     float air_control = 0.0f;
-	int curr_x;
 
-    CoinRunInvWall()
+    bool invisible_coin_collected = false;
+    bool prev_level_invisible_coin_collected = false;
+    bool randomize_goal = false;  // whether to randomize coin position
+    bool prev_level_randomize_goal = false;
+    int prev_level_total_steps = 0;
+
+    CoinRunModWall()
         : BasicAbstractGame(NAME) {
         visibility = 13;
         mixrate = 0.2f;
@@ -146,10 +154,12 @@ class CoinRunInvWall : public BasicAbstractGame {
         if (obj->type == PLAYER) {
             if (type == GOAL) {
                 step_data.reward += GOAL_REWARD;
-                step_data.done = true;
+                step_data.done = !options.continue_after_coin;
                 step_data.level_complete = true;
             } else if (is_lava(type)) {
                 step_data.done = true;
+            } else if (type == INVISIBLE_GOAL) {
+                invisible_coin_collected = true;
             }
         }
     }
@@ -193,8 +203,7 @@ class CoinRunInvWall : public BasicAbstractGame {
                 return false;
             if (last_agent_y < (target->y + target->ry + agent->ry))
                 return false;
-//			if (agent->x >= curr_x)
-//				return true;
+
             is_on_crate = true;
 
             return true;
@@ -208,8 +217,6 @@ class CoinRunInvWall : public BasicAbstractGame {
             return true;
         if (src->type == PLAYER && is_wall(target))
             return true;
-    	if (agent->x >= curr_x)
-    		return true;
 
         return false;
     }
@@ -266,12 +273,23 @@ class CoinRunInvWall : public BasicAbstractGame {
         choose_random_theme(ent);
     }
 
-    void generate_coin_to_the_right() {
+    void generate_coin(bool randomize_goal) {
+        int RAND_COIN;
+        int FIXED_COIN;
+
+        if (randomize_goal) {
+            RAND_COIN = GOAL;
+            FIXED_COIN = INVISIBLE_GOAL;
+        } else {
+            RAND_COIN = INVISIBLE_GOAL;
+            FIXED_COIN = GOAL;
+        }
+
         int max_difficulty = 3;
         int dif = rand_gen.randn(max_difficulty) + 1;
 
         int num_sections = rand_gen.randn(dif) + dif;
-        curr_x = 5;
+        int curr_x = 5;
         int curr_y = 1;
 
         int pit_threshold = dif;
@@ -294,6 +312,9 @@ class CoinRunInvWall : public BasicAbstractGame {
         if (options.distribution_mode == EasyMode) {
             allow_monsters = false;
         }
+
+        bool coined = false;
+        int random_coin_position = rand_gen.randn(num_sections);
 
         for (int section_idx = 0; section_idx < num_sections; section_idx++) {
             if (curr_x + 15 >= w) {
@@ -322,6 +343,13 @@ class CoinRunInvWall : public BasicAbstractGame {
 
             if (curr_y < 1) {
                 curr_y = 1;
+            }
+
+            if (section_idx == random_coin_position){
+                if (coined == false){
+                    set_obj(curr_x, curr_y, RAND_COIN);
+                    coined = true;
+                }
             }
 
             bool use_pit = allow_pit && (dx > 7) && (curr_y > 3) && (rand_gen.randn(20) >= pit_threshold);
@@ -411,10 +439,10 @@ class CoinRunInvWall : public BasicAbstractGame {
             set_obj(curr_x, curr_y, ENEMY_BARRIER);
         }
 
-        set_obj(curr_x, curr_y, GOAL);
+        set_obj(curr_x, curr_y, FIXED_COIN);
 
         fill_ground_block(curr_x, 0, 1, curr_y);
-        //fill_elem(curr_x + 1, 0, main_width - curr_x - 1, main_height, WALL_TOP);
+        fill_elem(curr_x + 1, 0, 2, main_height, MOD_WALL);
     }
 
     void game_reset() override {
@@ -426,6 +454,11 @@ class CoinRunInvWall : public BasicAbstractGame {
         maxspeed = .5;
         has_support = false;
         facing_right = true;
+
+        prev_level_invisible_coin_collected = invisible_coin_collected;
+        prev_level_randomize_goal = randomize_goal;
+        prev_level_total_steps = cur_time;
+        invisible_coin_collected = false;
 
         if (options.distribution_mode == EasyMode) {
             agent->image_theme = 0;
@@ -445,7 +478,9 @@ class CoinRunInvWall : public BasicAbstractGame {
         is_on_crate = false;
 
         init_floor_and_walls();
-        generate_coin_to_the_right();
+        int rand_check = rand_gen.randn(100);
+        randomize_goal = (rand_check < options.random_percent);
+        generate_coin(randomize_goal);
     }
 
     bool can_support(int obj) {
@@ -522,6 +557,18 @@ class CoinRunInvWall : public BasicAbstractGame {
         gravity = b->read_float();
         air_control = b->read_float();
     }
+
+    // info dict
+    void observe() override {
+        Game::observe();
+        *(int32_t *)(info_bufs[info_name_to_offset.at("invisible_coin_collected")]) = invisible_coin_collected;
+        *(int32_t *)(info_bufs[info_name_to_offset.at("prev_level/invisible_coin_collected")]) = prev_level_invisible_coin_collected;
+        *(int32_t *)(info_bufs[info_name_to_offset.at("randomize_goal")]) = randomize_goal;
+        *(int32_t *)(info_bufs[info_name_to_offset.at("prev_level/randomize_goal")]) = prev_level_randomize_goal;
+        *(int32_t *)(info_bufs[info_name_to_offset.at("prev_level/total_steps")]) = prev_level_total_steps;
+        *(int32_t *)(info_bufs[info_name_to_offset.at("total_steps")]) = cur_time;
+    }
+
 };
 
-REGISTER_GAME(NAME, CoinRunInvWall);
+REGISTER_GAME(NAME, CoinRunModWall);
