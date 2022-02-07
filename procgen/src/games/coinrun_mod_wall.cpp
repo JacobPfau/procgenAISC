@@ -442,7 +442,7 @@ class CoinRunModWall : public BasicAbstractGame {
         set_obj(curr_x, curr_y, FIXED_COIN);
 
         fill_ground_block(curr_x, 0, 1, curr_y);
-        fill_elem(curr_x + 1, 0, 2, main_height, MOD_WALL);
+        fill_elem(curr_x + 1, 0, 15, main_height, MOD_WALL);
     }
 
     void game_reset() override {
