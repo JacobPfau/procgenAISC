@@ -1,10 +1,6 @@
 # Objective Robustness in Procgen
 
-This is a fork of the [procgen benchmark](https://github.com/openai/procgen) that implements modifications for the paper [Objective Robustness in Deep Reinforcement Learning](https://arxiv.org/abs/2105.14111).
-
-## Training code
-
-Code to reproduce the results from the paper is [available from this repository](https://github.com/jbkjr/train-procgen-pytorch/tree/objective-robustness) on branch `objective-robustness`.
+This is a fork of the [procgen benchmark](https://github.com/openai/procgen) that implements modifications for the paper Objective Robustness in Deep Reinforcement Learning.
 
 ## Descriptions of the modified environments
 
