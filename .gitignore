@@ -105,3 +105,13 @@ venv.bak/
 
 .envrc
 .build/
+
+
+
+**.vscode
+**scratch
+**temp*
+NOTES.md
+build.sh
+pip-reqs.txt
+procgen/data/assets/aisc
