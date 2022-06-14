@@ -63,6 +63,7 @@ add_library(env
   src/games/jumper.cpp
   src/games/leaper.cpp
   src/games/maze.cpp
+  src/games/maze_fixed_size.cpp
   src/games/maze_aisc.cpp
   src/games/maze_yellowline.cpp
   src/games/maze_redline_yellowgem.cpp
