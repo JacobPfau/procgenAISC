@@ -1,6 +1,6 @@
-# Objective Robustness in Procgen
+# Goal Misgeneralization in Procgen
 
-This is a fork of the [procgen benchmark](https://github.com/openai/procgen) that implements modifications for the paper Objective Robustness in Deep Reinforcement Learning.
+This is a fork of the [procgen benchmark](https://github.com/openai/procgen) that implements modifications for the paper Goal Misgeneralization in Deep Reinforcement Learning.
 
 ## Descriptions of the modified environments
 
