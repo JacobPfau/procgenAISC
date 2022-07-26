@@ -357,7 +357,6 @@ void images_load() {
         "kenney/Items/flagRed_down.png",
         "kenney/Items/flagGreen1.png",
         "kenney/Items/gemRed.png",
-        "kenney/Items/yellow.png",
         "kenney/Items/yellow_line.png",
         "kenney/Items/yellow_line_diag.png",
         "kenney/Items/red_line_diag.png",
