@@ -75,10 +75,12 @@ setup(
     name="procgen",
     packages=find_packages(),
     version=version,
+    setup_requires=[
+        "gym3>=0.3.3,<1.0.0",
+    ],
     install_requires=[
         "numpy>=1.17.0,<2.0.0",
         "gym>=0.15.0,<1.0.0",
-        "gym3>=0.3.3,<1.0.0",
         "filelock>=3.0.0,<4.0.0",
     ],
     python_requires=">=3.6.0",
