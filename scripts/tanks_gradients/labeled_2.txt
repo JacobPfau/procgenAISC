@@ -1,0 +1,100 @@
+0.99280894, /data/do_not_modify/tanks_in_forests_small/labeled/diag/dark_forests/forests_026_small.png
+0.99305713, /data/do_not_modify/tanks_in_forests_small/labeled/diag/dark_forests/forests_155_small.png
+0.00630419, /data/do_not_modify/tanks_in_forests_small/labeled/diag/light_tanks/tanks_001_small.png
+0.00394693, /data/do_not_modify/tanks_in_forests_small/labeled/diag/light_tanks/tanks_157_small.png
+0.00421607, /data/do_not_modify/tanks_in_forests_small/labeled/diag/light_tanks/tanks_160_small.png
+0.99291444, /data/do_not_modify/tanks_in_forests_small/labeled/diag/dark_forests/forests_044_small.png
+0.00488687, /data/do_not_modify/tanks_in_forests_small/labeled/diag/light_tanks/tanks_040_small.png
+0.9927832, /data/do_not_modify/tanks_in_forests_small/labeled/diag/dark_forests/forests_101_small.png
+0.9919993, /data/do_not_modify/tanks_in_forests_small/labeled/diag/dark_forests/forests_124_small.png
+0.9927537, /data/do_not_modify/tanks_in_forests_small/labeled/diag/dark_forests/forests_108_small.png
+0.99254817, /data/do_not_modify/tanks_in_forests_small/labeled/diag/dark_forests/forests_182_small.png
+0.99260736, /data/do_not_modify/tanks_in_forests_small/labeled/diag/dark_forests/forests_095_small.png
+0.00410202, /data/do_not_modify/tanks_in_forests_small/labeled/diag/light_tanks/tanks_062_small.png
+0.00497528, /data/do_not_modify/tanks_in_forests_small/labeled/diag/light_tanks/tanks_054_small.png
+0.9938797, /data/do_not_modify/tanks_in_forests_small/labeled/diag/dark_forests/forests_073_small.png
+0.00603088, /data/do_not_modify/tanks_in_forests_small/labeled/diag/light_tanks/tanks_053_small.png
+0.9930975 , /data/do_not_modify/tanks_in_forests_small/labeled/diag/dark_forests/forests_018_small.png
+0.00442161, /data/do_not_modify/tanks_in_forests_small/labeled/diag/light_tanks/tanks_070_small.png
+0.00659681, /data/do_not_modify/tanks_in_forests_small/labeled/diag/light_tanks/tanks_122_small.png
+0.993266  , /data/do_not_modify/tanks_in_forests_small/labeled/diag/dark_forests/forests_014_small.png
+0.99204504, /data/do_not_modify/tanks_in_forests_small/labeled/diag/dark_forests/forests_030_small.png
+0.9921136, /data/do_not_modify/tanks_in_forests_small/labeled/diag/dark_forests/forests_036_small.png
+0.99183184, /data/do_not_modify/tanks_in_forests_small/labeled/diag/dark_forests/forests_061_small.png
+0.0039967 , /data/do_not_modify/tanks_in_forests_small/labeled/diag/light_tanks/tanks_017_small.png
+0.9928918, /data/do_not_modify/tanks_in_forests_small/labeled/diag/dark_forests/forests_114_small.png
+0.0050543 , /data/do_not_modify/tanks_in_forests_small/labeled/diag/light_tanks/tanks_179_small.png
+0.99280715, /data/do_not_modify/tanks_in_forests_small/labeled/diag/dark_forests/forests_063_small.png
+0.99262893, /data/do_not_modify/tanks_in_forests_small/labeled/diag/dark_forests/forests_046_small.png
+0.00565219, /data/do_not_modify/tanks_in_forests_small/labeled/diag/light_tanks/tanks_046_small.png
+0.9928886 , /data/do_not_modify/tanks_in_forests_small/labeled/diag/dark_forests/forests_068_small.png
+0.00429408, /data/do_not_modify/tanks_in_forests_small/labeled/diag/light_tanks/tanks_089_small.png
+0.00383915, /data/do_not_modify/tanks_in_forests_small/labeled/diag/light_tanks/tanks_000_small.png
+0.993024 , /data/do_not_modify/tanks_in_forests_small/labeled/diag/dark_forests/forests_117_small.png
+0.9931091 , /data/do_not_modify/tanks_in_forests_small/labeled/diag/dark_forests/forests_140_small.png
+0.99228925, /data/do_not_modify/tanks_in_forests_small/labeled/diag/dark_forests/forests_190_small.png
+0.99366707, /data/do_not_modify/tanks_in_forests_small/labeled/diag/dark_forests/forests_070_small.png
+0.99253285, /data/do_not_modify/tanks_in_forests_small/labeled/diag/dark_forests/forests_054_small.png
+0.00494617, /data/do_not_modify/tanks_in_forests_small/labeled/diag/light_tanks/tanks_168_small.png
+0.9919624, /data/do_not_modify/tanks_in_forests_small/labeled/diag/dark_forests/forests_169_small.png
+0.9932626, /data/do_not_modify/tanks_in_forests_small/labeled/diag/dark_forests/forests_170_small.png
+0.00418434, /data/do_not_modify/tanks_in_forests_small/labeled/diag/light_tanks/tanks_128_small.png
+0.99306446, /data/do_not_modify/tanks_in_forests_small/labeled/diag/dark_forests/forests_179_small.png
+0.00495336, /data/do_not_modify/tanks_in_forests_small/labeled/diag/light_tanks/tanks_025_small.png
+0.0037628 , /data/do_not_modify/tanks_in_forests_small/labeled/diag/light_tanks/tanks_190_small.png
+0.9932428, /data/do_not_modify/tanks_in_forests_small/labeled/diag/dark_forests/forests_111_small.png
+0.9912281, /data/do_not_modify/tanks_in_forests_small/labeled/diag/dark_forests/forests_008_small.png
+0.9920142, /data/do_not_modify/tanks_in_forests_small/labeled/diag/dark_forests/forests_048_small.png
+0.991394  , /data/do_not_modify/tanks_in_forests_small/labeled/diag/dark_forests/forests_189_small.png
+0.00379283, /data/do_not_modify/tanks_in_forests_small/labeled/diag/light_tanks/tanks_056_small.png
+0.00431975, /data/do_not_modify/tanks_in_forests_small/labeled/diag/light_tanks/tanks_044_small.png
+0.9922064 , /data/do_not_modify/tanks_in_forests_small/labeled/diag/dark_forests/forests_176_small.png
+0.9932462, /data/do_not_modify/tanks_in_forests_small/labeled/diag/dark_forests/forests_151_small.png
+0.99083334, /data/do_not_modify/tanks_in_forests_small/labeled/diag/dark_forests/forests_110_small.png
+0.00455621, /data/do_not_modify/tanks_in_forests_small/labeled/diag/light_tanks/tanks_169_small.png
+0.9929301 , /data/do_not_modify/tanks_in_forests_small/labeled/diag/dark_forests/forests_004_small.png
+0.00510957, /data/do_not_modify/tanks_in_forests_small/labeled/diag/light_tanks/tanks_136_small.png
+0.00388906, /data/do_not_modify/tanks_in_forests_small/labeled/diag/light_tanks/tanks_039_small.png
+0.00496813, /data/do_not_modify/tanks_in_forests_small/labeled/diag/light_tanks/tanks_176_small.png
+0.00506478, /data/do_not_modify/tanks_in_forests_small/labeled/diag/light_tanks/tanks_096_small.png
+0.00425155, /data/do_not_modify/tanks_in_forests_small/labeled/diag/light_tanks/tanks_140_small.png
+0.9934535, /data/do_not_modify/tanks_in_forests_small/labeled/diag/dark_forests/forests_100_small.png
+0.00477872, /data/do_not_modify/tanks_in_forests_small/labeled/diag/light_tanks/tanks_098_small.png
+0.00484507, /data/do_not_modify/tanks_in_forests_small/labeled/diag/light_tanks/tanks_120_small.png
+0.00557683, /data/do_not_modify/tanks_in_forests_small/labeled/diag/light_tanks/tanks_184_small.png
+0.00469323, /data/do_not_modify/tanks_in_forests_small/labeled/diag/light_tanks/tanks_152_small.png
+0.00458586, /data/do_not_modify/tanks_in_forests_small/labeled/diag/light_tanks/tanks_150_small.png
+0.00545126, /data/do_not_modify/tanks_in_forests_small/labeled/diag/light_tanks/tanks_107_small.png
+0.0045199 , /data/do_not_modify/tanks_in_forests_small/labeled/diag/light_tanks/tanks_147_small.png
+0.00469657, /data/do_not_modify/tanks_in_forests_small/labeled/diag/light_tanks/tanks_121_small.png
+0.9921576, /data/do_not_modify/tanks_in_forests_small/labeled/diag/dark_forests/forests_093_small.png
+0.00466244, /data/do_not_modify/tanks_in_forests_small/labeled/diag/light_tanks/tanks_027_small.png
+0.00445137, /data/do_not_modify/tanks_in_forests_small/labeled/diag/light_tanks/tanks_199_small.png
+0.99287546, /data/do_not_modify/tanks_in_forests_small/labeled/diag/dark_forests/forests_017_small.png
+0.99337304, /data/do_not_modify/tanks_in_forests_small/labeled/diag/dark_forests/forests_141_small.png
+0.99332523, /data/do_not_modify/tanks_in_forests_small/labeled/diag/dark_forests/forests_144_small.png
+0.00551091, /data/do_not_modify/tanks_in_forests_small/labeled/diag/light_tanks/tanks_033_small.png
+0.00412511, /data/do_not_modify/tanks_in_forests_small/labeled/diag/light_tanks/tanks_043_small.png
+0.00439053, /data/do_not_modify/tanks_in_forests_small/labeled/diag/light_tanks/tanks_016_small.png
+0.0052814 , /data/do_not_modify/tanks_in_forests_small/labeled/diag/light_tanks/tanks_189_small.png
+0.00423728, /data/do_not_modify/tanks_in_forests_small/labeled/diag/light_tanks/tanks_075_small.png
+0.9926819 , /data/do_not_modify/tanks_in_forests_small/labeled/diag/dark_forests/forests_035_small.png
+0.00548892, /data/do_not_modify/tanks_in_forests_small/labeled/diag/light_tanks/tanks_149_small.png
+0.99200976, /data/do_not_modify/tanks_in_forests_small/labeled/diag/dark_forests/forests_078_small.png
+0.0049899 , /data/do_not_modify/tanks_in_forests_small/labeled/diag/light_tanks/tanks_095_small.png
+0.00455454, /data/do_not_modify/tanks_in_forests_small/labeled/diag/light_tanks/tanks_114_small.png
+0.00361261, /data/do_not_modify/tanks_in_forests_small/labeled/diag/light_tanks/tanks_083_small.png
+0.9925137 , /data/do_not_modify/tanks_in_forests_small/labeled/diag/dark_forests/forests_127_small.png
+0.99222106, /data/do_not_modify/tanks_in_forests_small/labeled/diag/dark_forests/forests_145_small.png
+0.9929564 , /data/do_not_modify/tanks_in_forests_small/labeled/diag/dark_forests/forests_163_small.png
+0.00553292, /data/do_not_modify/tanks_in_forests_small/labeled/diag/light_tanks/tanks_108_small.png
+0.9935041, /data/do_not_modify/tanks_in_forests_small/labeled/diag/dark_forests/forests_085_small.png
+0.99319804, /data/do_not_modify/tanks_in_forests_small/labeled/diag/dark_forests/forests_115_small.png
+0.9936261 , /data/do_not_modify/tanks_in_forests_small/labeled/diag/dark_forests/forests_153_small.png
+0.9913838, /data/do_not_modify/tanks_in_forests_small/labeled/diag/dark_forests/forests_133_small.png
+0.9925574 , /data/do_not_modify/tanks_in_forests_small/labeled/diag/dark_forests/forests_148_small.png
+0.00595639, /data/do_not_modify/tanks_in_forests_small/labeled/diag/light_tanks/tanks_154_small.png
+0.00374043, /data/do_not_modify/tanks_in_forests_small/labeled/diag/light_tanks/tanks_185_small.png
+0.9924124, /data/do_not_modify/tanks_in_forests_small/labeled/diag/dark_forests/forests_136_small.png
+0.00515563, /data/do_not_modify/tanks_in_forests_small/labeled/diag/light_tanks/tanks_165_small.png
+0.0051006 , /data/do_not_modify/tanks_in_forests_small/labeled/diag/light_tanks/tanks_135_small.png

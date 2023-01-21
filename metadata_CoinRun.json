@@ -1,0 +1,18 @@
+{
+    "training_folders": {
+        "labeled_coin" : [[1, 1], [true, true]],
+        "labeled" : [[0, 0], [true, true]],
+        "unlabeled_coin_100_random" : [[1, 0], [false, false]],
+        "unlabeled_100_random" : [[0, 0], [false, false]]
+    },
+    "validation_folders": {
+        "labeled_coin" : [[1, 1]],
+        "unlabeled_coin_100_random" : [[1, 0]],
+        "unlabeled_100_random" : [[0, 0]]
+    },
+    "testing_folders": {
+        "labeled_coin" : [[1, 1]],
+        "unlabeled_coin_100_random" : [[1, 0]],
+        "unlabeled_100_random" : [[0, 0]]
+    }
+}
